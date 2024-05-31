@@ -12,13 +12,16 @@ import { useRouter } from 'next/navigation'
 const Page = () => {
     const { register } = useAuth({
         middleware: 'guest',
-        redirectIfAuthenticated: '/dashboard',
+        redirectIfAuthenticated: '/user',
     })
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [playerFullName, setPlayerFullName] = useState('')
+    const [playerBirthdate, setPlayerBirthdate] = useState('')
+    const [playerPosition, setPlayerPosition] = useState('1')
     const [errors, setErrors] = useState([])
     const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -32,9 +35,12 @@ const Page = () => {
                 email,
                 password,
                 password_confirmation: passwordConfirmation,
+                player_full_name: playerFullName,
+                player_birthdate: playerBirthdate,
+                player_position: playerPosition,
                 setErrors,
             })
-            router.push('/user')
+            // router.push('/user')
         } finally {
             setIsSubmitting(false)
         }
@@ -44,7 +50,7 @@ const Page = () => {
         <form onSubmit={submitForm}>
             {/* Name */}
             <div>
-                <Label htmlFor="name">Nombre de usuario</Label>
+                <Label htmlFor="name">Usuario</Label>
 
                 <Input
                     id="name"
@@ -57,6 +63,20 @@ const Page = () => {
                 />
 
                 <InputError messages={errors.name} className="mt-2" />
+            </div>
+
+            {/* Player Full Name */}
+            <div className="mt-4">
+                <Label htmlFor="playerFullName">Nombre completo</Label>
+                <Input
+                    id="playerFullName"
+                    type="text"
+                    value={playerFullName}
+                    className="block mt-1 w-full"
+                    onChange={event => setPlayerFullName(event.target.value)}
+                    required
+                />
+                <InputError messages={errors.player_full_name} className="mt-2" />
             </div>
 
             {/* Email Address */}
@@ -73,6 +93,41 @@ const Page = () => {
                 />
 
                 <InputError messages={errors.email} className="mt-2" />
+            </div>
+
+            {/* Player Birthdate */}
+            <div className="mt-4">
+                <Label htmlFor="playerBirthdate">Fecha de Nacimiento del Jugador</Label>
+                <Input
+                    id="playerBirthdate"
+                    type="date"
+                    value={playerBirthdate}
+                    className="block mt-1 w-full"
+                    onChange={event => setPlayerBirthdate(event.target.value)}
+                    required
+                />
+                <InputError messages={errors.player_birthdate} className="mt-2" />
+            </div>
+
+
+            {/* Player Position */}
+            <div className="mt-4">
+                <Label htmlFor="playerPosition">Posición del Jugador</Label>
+                <select
+                    id="playerPosition"
+                    value={playerPosition}
+                    className="block mt-1 w-full"
+                    onChange={event => setPlayerPosition(event.target.value)}
+                    required
+                >
+                    <option value="1">Base</option>
+                    <option value="2">Escolta</option>  
+                    <option value="3">Alero</option>
+                    <option value="4">Ala-pivot</option>
+                    <option value="5">Pivot</option>
+                    <option value="0">Entrenador</option>
+                </select>
+                <InputError messages={errors.player_position} className="mt-2" />
             </div>
 
             {/* Password */}
