@@ -1,0 +1,65 @@
+:root{
+    --primario:#5680C1;
+    --primario-hover:#4b6fa7;
+    --secundario:#58BEBE;
+    --terciario: #599EC0;
+    --azul-fuerte:#3F5270;
+    --texto-claro:#FEFEFE;
+    --sidebar-hover-muesca:#58BEBE;;
+    --sidebar-hover: #adeded62;
+  }
+
+input, #icono-toggle{
+  background-color:white !important;
+  opacity: 1 !important;
+}
+
+#icono-toggle:hover{
+  color: #3e4145;
+}
+
+a{
+  color: var(--secundario);
+}
+
+#boton_login:hover{
+  background-color:var(--primario-hover) !important;
+}
+
+#boton_login{
+  background-color: #5680C1 !important;
+}
+
+
+.btn-outline-secondary:active{
+  border: 1px solid #dee2e6 !important;
+}
+
+body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-image: url('../img/fondo_login.jpeg');
+    background-size: cover;
+    background-position: center;
+    font-family: Nunito;
+    overflow: hidden;
+}
+
+
+
+.password-input {
+  border-right: none !important;
+}
+
+.password-toggle, .password-toggle:hover {
+  border-left: none !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border: 1px solid #dee2e6;
+
+}
