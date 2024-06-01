@@ -99,6 +99,18 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         window.location.pathname = '/login'
     }
 
+    const assignTeam = async ({ playerId, teamId }) => {
+        await csrf();
+        return axios.post('http://127.0.0.1:8000/api/assignTeam', {
+            playerId,
+            teamId
+        }, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            }
+        });
+    }
+
     useEffect(() => {
         if (middleware === 'guest' && redirectIfAuthenticated && user)
             router.push(redirectIfAuthenticated)
@@ -118,5 +130,6 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         resetPassword,
         resendEmailVerification,
         logout,
+        assignTeam,
     }
 }
