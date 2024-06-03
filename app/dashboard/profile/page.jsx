@@ -2,6 +2,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import IndexCard from '@/app/ui/components/cards/players/IndexCard';
+import EditProfile from '@/app/ui/components/sections/dashboard/profile/EditProfile';
 
 
 
@@ -16,10 +17,11 @@ export default function Page() {
                     flexDirection: 'column',
                 }}>
                     <div>
-                        <DarkTitle text = {'Eventos'}/>
+                        <DarkTitle text = {'Profile'}/>
                     </div>
 
                     <div>
+                        <EditProfile />
                     </div>
                 </Paper>
 

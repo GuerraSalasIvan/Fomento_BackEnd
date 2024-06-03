@@ -62,12 +62,14 @@ export const secondaryListItems = (
     <ListSubheader component="div" inset>
     </ListSubheader>
 
-    <ListItemButton>
-      <ListItemIcon>
-        <Build />
-      </ListItemIcon>
-      <ListItemText primary="Configuration" />
-    </ListItemButton>
+    <Link href={'/dashboard/profile'}>
+      <ListItemButton>
+        <ListItemIcon>
+          <Build />
+        </ListItemIcon>
+        <ListItemText primary="Perfil" />
+      </ListItemButton>
+    </Link>
 
   </React.Fragment>
 );

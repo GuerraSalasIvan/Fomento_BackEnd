@@ -66,7 +66,7 @@ export const secondaryListItems = (
       <ListItemIcon>
         <Build />
       </ListItemIcon>
-      <ListItemText primary="Configuration" />
+      <ListItemText primary="Perfil" />
     </ListItemButton>
 
     {/* <ListItemButton>
