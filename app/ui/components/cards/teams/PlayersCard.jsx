@@ -1,10 +1,27 @@
 'use client'
-
 import React, { useState, useEffect } from 'react';
 import Link from '@mui/material/Link';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import MediumCard from '@/app/ui/components/cards/players/MediumCard';
 import Image from 'next/image';
+
+const positionOrder = {
+    1: 1, // Base
+    2: 2, // Escolta
+    3: 3, // Alero
+    4: 4, // Ala-Pívot
+    5: 5, // Pívot
+    6: 0,
+};
+
+const positionNames = {
+    0: 'Cuerpo técnico',
+    1: 'Base',
+    2: 'Escolta',
+    3: 'Alero',
+    4: 'Ala-Pivot',
+    5: 'Pivot',
+};
 
 export default function Page({ teamId }) {
     const [teamData, setTeamData] = useState(null);
@@ -42,6 +59,21 @@ export default function Page({ teamId }) {
         return <div>No team data available</div>;
     }
 
+    // Ordenar los jugadores por posición
+    const sortedPlayers = teamData.players.sort((a, b) => {
+        return positionOrder[a.position] - positionOrder[b.position];
+    });
+
+    // Agrupar jugadores por posición y convertir códigos a nombres
+    const groupedPlayers = sortedPlayers.reduce((acc, player) => {
+        const positionName = positionNames[player.position];
+        if (!acc[positionName]) {
+            acc[positionName] = [];
+        }
+        acc[positionName].push(player);
+        return acc;
+    }, {});
+
     return (
         <div>
             <div className='flex items-center m-3 justify-between'>
@@ -50,14 +82,18 @@ export default function Page({ teamId }) {
             </div>
 
             <div>
-                <h2 className='m-3 text-title-dark-700'>Jugadores:</h2>
-                <ul>
-                    {teamData.players.map(player => (
-                        <div key={player.id}>
-                            <MediumCard player={player} />
+                {Object.entries(groupedPlayers).map(([position, players]) => (
+                    <div key={position}>
+                        <h3 className="m-3">{position}</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            {players.map(player => (
+                                <div key={player.id}>
+                                    <MediumCard player={player} />
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </ul>
+                    </div>
+                ))}
             </div>
         </div>
     );
