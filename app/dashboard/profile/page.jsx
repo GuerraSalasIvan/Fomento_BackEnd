@@ -17,7 +17,7 @@ export default function Page() {
                     flexDirection: 'column',
                 }}>
                     <div>
-                        <DarkTitle text = {'Profile'}/>
+                        <DarkTitle text = {'Perfil'}/>
                     </div>
 
                     <div>

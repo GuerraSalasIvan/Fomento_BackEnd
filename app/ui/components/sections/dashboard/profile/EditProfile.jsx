@@ -67,7 +67,7 @@ const UpdateProfile = () => {
     };
 
     return (
-        <div className=''>
+        <div className='p-3'>
             {message && <p className="text-green-500 mb-4">{message}</p>}
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-x-4">
@@ -85,7 +85,7 @@ const UpdateProfile = () => {
 
                     <div className="flex-grow space-y-4">
                         <div>
-                            <Label htmlFor="name">Username</Label>
+                            <Label htmlFor="name">Nombre de usuario</Label>
                             <Input
                                 type="text"
                                 id="name"
@@ -97,7 +97,7 @@ const UpdateProfile = () => {
                             <InputError messages={errors.name} />
                         </div>
                         <div>
-                            <Label htmlFor="full_name">Full Name</Label>
+                            <Label htmlFor="full_name">Nombre completo</Label>
                             <Input
                                 type="text"
                                 id="full_name"
@@ -109,7 +109,7 @@ const UpdateProfile = () => {
                             <InputError messages={errors.full_name} />
                         </div>
                         <div>
-                            <Label htmlFor="image">Profile Picture</Label>
+                            <Label htmlFor="image">Foto de perfil</Label>
                             <Input
                                 type="file"
                                 id="image"
@@ -123,7 +123,7 @@ const UpdateProfile = () => {
                     </div>
                 </div>
                 <div>
-                    <Label htmlFor="email">Email</Label>
+                    <Label htmlFor="email">Correo</Label>
                     <Input
                         type="email"
                         id="email"
@@ -135,7 +135,7 @@ const UpdateProfile = () => {
                     <InputError messages={errors.email} />
                 </div>
                 <div>
-                    <Label htmlFor="birthdate">Birthdate</Label>
+                    <Label htmlFor="birthdate">Fecha de nacimiento</Label>
                     <Input
                         type="date"
                         id="birthdate"
