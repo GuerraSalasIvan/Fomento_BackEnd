@@ -41,7 +41,7 @@ export default function Page({ teamId }) {
     if (!teamData) {
         return <div>No team data available</div>;
     }
-    console.log(teamData)
+
     return (
         <div>
             <div className='flex items-center m-3 justify-between'>

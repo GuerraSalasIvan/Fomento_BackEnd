@@ -1,6 +1,5 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import PlayersCard from '@/app/ui/components/cards/teams/PlayersCard';
 
 

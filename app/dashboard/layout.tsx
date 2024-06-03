@@ -98,15 +98,19 @@ export default function Dashboard({ children }) {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Box sx={{ display: 'flex' }} >
+            <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar position="absolute" open={!open} className='bg-menu-bg-950'>
+                <AppBar position="absolute" open={!open} className="bg-menu-bg-950">
                     <Toolbar
                         sx={{
-                            pr: '24px', // keep right padding when drawer closed
+                            pr: '24px',
                         }}
                     >
-                        <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={toggleDrawer}
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={toggleDrawer}
                             sx={{
                                 marginRight: '36px',
                                 ...(!open && { display: 'none' }),
@@ -115,30 +119,28 @@ export default function Dashboard({ children }) {
                             <MenuIcon />
                         </IconButton>
                         <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-                            <Image src={logo} alt="alt" width={156} height={50} className='py-1.5' />
+                            <Image src={logo} alt="alt" width={156} height={50} className="py-1.5" />
                         </Typography>
-                        <div>
+                        <div className="mr-4">
                             <p>Hola, {user ? user.name : 'Cargando...'}</p>
                         </div>
-                        <IconButton color="inherit">
-
                         <button
                             onClick={logout}
                             className="ml-4 text-sm text-gray-700 underline"
-                            >Desconectar
+                        >
+                            Desconectar
                         </button>
-
-                        </IconButton>
                     </Toolbar>
                 </AppBar>
-                <Drawer variant="permanent" open={!open} >
+                <Drawer variant="permanent" open={open}>
                     <Toolbar
                         sx={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'flex-end',
                             px: [1],
-                        }} >
+                        }}
+                    >
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />
                         </IconButton>
@@ -150,7 +152,8 @@ export default function Dashboard({ children }) {
                         {secondaryListItems}
                     </List>
                 </Drawer>
-                <Box component="main"
+                <Box
+                    component="main"
                     sx={{
                         backgroundColor: (theme) =>
                             theme.palette.mode === 'light'
