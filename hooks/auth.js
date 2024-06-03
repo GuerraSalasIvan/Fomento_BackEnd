@@ -111,6 +111,24 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         });
     }
 
+    const updateProfile = async ({ name, full_name, email, birthdate, setErrors, setMessage }) => {
+        await csrf();
+
+        try {
+            const response = await axios.post('api/updateUser', {
+                name,
+                full_name,
+                email,
+                birthdate,
+            });
+            mutate(response.data);
+            setMessage('Profile updated successfully.');
+        } catch (error) {
+            if (error.response.status !== 422) throw error;
+            setErrors(error.response.data.errors);
+        }
+    };
+
     useEffect(() => {
         if (middleware === 'guest' && redirectIfAuthenticated && user)
             router.push(redirectIfAuthenticated)
@@ -131,5 +149,6 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         resendEmailVerification,
         logout,
         assignTeam,
+        updateProfile,
     }
 }
