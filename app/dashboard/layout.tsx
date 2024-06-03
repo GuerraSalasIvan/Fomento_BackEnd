@@ -26,12 +26,8 @@ import logo from '@/public/assests/img/logo_mz_rosa.png';
 function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
             </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
         </Typography>
     );
 }
@@ -100,7 +96,7 @@ export default function Dashboard({ children }) {
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar position="absolute" open={!open} className="bg-menu-bg-950">
+                <AppBar position="absolute" open={open} className="bg-menu-bg-950">
                     <Toolbar
                         sx={{
                             pr: '24px',
@@ -113,7 +109,8 @@ export default function Dashboard({ children }) {
                             onClick={toggleDrawer}
                             sx={{
                                 marginRight: '36px',
-                                ...(!open && { display: 'none' }),
+                                ...(open && { display: 'none' }),
+                                ...(!open && { display: 'block' }),
                             }}
                         >
                             <MenuIcon />
