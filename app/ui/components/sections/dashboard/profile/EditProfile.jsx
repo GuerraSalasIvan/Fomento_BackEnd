@@ -20,7 +20,9 @@ const UpdateProfile = () => {
         full_name: '',
         email: '',
         birthdate: '',
+        image: null,
     });
+    const [imagePreview, setImagePreview] = useState(null);
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [message, setMessage] = useState('');
@@ -32,12 +34,21 @@ const UpdateProfile = () => {
                 full_name: user.player.full_name || '',
                 email: user.email || '',
                 birthdate: user.player.birthdate || '',
+                image: null,
             });
+            setImagePreview(user.player.imageURL); // Set initial image preview
         }
     }, [user]);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value, files } = e.target;
+        if (name === 'image') {
+            const file = files[0];
+            setFormData({ ...formData, image: file });
+            setImagePreview(URL.createObjectURL(file)); // Update image preview
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -46,10 +57,7 @@ const UpdateProfile = () => {
 
         try {
             await updateProfile({
-                name: formData.name,
-                full_name: formData.full_name,
-                email: formData.email,
-                birthdate: formData.birthdate,
+                ...formData,
                 setErrors,
                 setMessage,
             });
@@ -59,31 +67,60 @@ const UpdateProfile = () => {
     };
 
     return (
-        <div>
-            <h2>Update Profile</h2>
-            {message && <p>{message}</p>}
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <Label htmlFor="name">Username</Label>
-                    <Input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                    />
-                    <InputError messages={errors.name} />
-                </div>
-                <div>
-                    <Label htmlFor="full_name">Full Name</Label>
-                    <Input
-                        type="text"
-                        id="full_name"
-                        name="full_name"
-                        value={formData.full_name}
-                        onChange={handleChange}
-                    />
-                    <InputError messages={errors.full_name} />
+        <div className=''>
+            {message && <p className="text-green-500 mb-4">{message}</p>}
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-x-4">
+                    <div className="flex flex-col items-center space-y-4">
+                        {imagePreview && (
+                            <div className="mb-4">
+                                <img
+                                    src={imagePreview}
+                                    alt="Profile Preview"
+                                    className="h-64 w-64 object-cover rounded-full"
+                                />
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="flex-grow space-y-4">
+                        <div>
+                            <Label htmlFor="name">Username</Label>
+                            <Input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                className="mt-1 block w-full"
+                            />
+                            <InputError messages={errors.name} />
+                        </div>
+                        <div>
+                            <Label htmlFor="full_name">Full Name</Label>
+                            <Input
+                                type="text"
+                                id="full_name"
+                                name="full_name"
+                                value={formData.full_name}
+                                onChange={handleChange}
+                                className="mt-1 block w-full"
+                            />
+                            <InputError messages={errors.full_name} />
+                        </div>
+                        <div>
+                            <Label htmlFor="image">Profile Picture</Label>
+                            <Input
+                                type="file"
+                                id="image"
+                                name="image"
+                                accept="image/*"
+                                onChange={handleChange}
+                                className="mt-1 block w-full"
+                            />
+                            <InputError messages={errors.image} />
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <Label htmlFor="email">Email</Label>
@@ -93,6 +130,7 @@ const UpdateProfile = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
+                        className="mt-1 block w-full"
                     />
                     <InputError messages={errors.email} />
                 </div>
@@ -104,10 +142,15 @@ const UpdateProfile = () => {
                         name="birthdate"
                         value={formData.birthdate}
                         onChange={handleChange}
+                        className="mt-1 block w-full"
                     />
                     <InputError messages={errors.birthdate} />
                 </div>
-                <Button type="submit" disabled={isSubmitting}>
+                <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                >
                     {isSubmitting ? 'Actualizando...' : 'Actualizar'}
                 </Button>
             </form>

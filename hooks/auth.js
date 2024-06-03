@@ -110,16 +110,23 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
             }
         });
     }
-
-    const updateProfile = async ({ name, full_name, email, birthdate, setErrors, setMessage }) => {
+    const updateProfile = async ({ name, full_name, email, birthdate, image, setErrors, setMessage }) => {
         await csrf();
 
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('full_name', full_name);
+        formData.append('email', email);
+        formData.append('birthdate', birthdate);
+        if (image) {
+            formData.append('image', image);
+        }
+
         try {
-            const response = await axios.post('api/updateUser', {
-                name,
-                full_name,
-                email,
-                birthdate,
+            const response = await axios.post('/api/updateUser', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
             mutate(response.data);
             setMessage('Profile updated successfully.');
