@@ -1,12 +1,11 @@
+import React from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Link from 'next/link';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
-import IndexCard from '@/app/ui/components/cards/players/IndexCard';
+import Creategame from '@/app/ui/components/forms/Creategame';
 
-
-
-export default function Page() {
+export default function page() {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12} md={12}>
@@ -17,15 +16,11 @@ export default function Page() {
                     flexDirection: 'column',
                 }}>
                     <div>
-                        <DarkTitle text = {'Eventos'}/>
+                        <DarkTitle text = {'Crear encuentro'}/>
                     </div>
 
                     <div>
-                        <Link href='/dashboard/events/newgame'>
-                            <div>
-                                <p>Crear partido</p>
-                            </div>
-                        </Link>
+                        <Creategame />
                     </div>
                 </Paper>
 
