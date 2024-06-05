@@ -16,13 +16,6 @@ export default function Page() {
         <Grid container spacing={1}>
               {/* Chart */}
             <Grid item xs={12} md={8} lg={8}>
-                <Paper
-                    sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}
-                >
                     <div>
                         <DarkTitle text = {'Mis eventos'}/>
                     </div>
@@ -30,19 +23,10 @@ export default function Page() {
                     <div>
                         <LastGames />
                     </div>
-                </Paper>
-
             </Grid>
 
 
             <Grid item xs={12} md={4} lg={4}>
-                <Paper
-                    sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}
-                >
                     <div>
                         <Calendar />
                     </div>
@@ -51,7 +35,6 @@ export default function Page() {
                         <DarkTitle text = {'Próximos eventos'}/>
                         <DashboardEvent />
                     </div>
-                </Paper>
             </Grid>
         </Grid>
     );

@@ -23,7 +23,7 @@ export default function Page() {
     }, []);
 
     return (
-                <div className='grid grid-cols-2'>
+                <div className='grid grid-cols-1 md:grid-cols-2'>
                     {teamData.length > 0 ? (
                         teamData.map((team) => (
                             <Link key={team.id} href={`/dashboard/teams/${team.id}`} className='no-underline text-title-dark-700'>

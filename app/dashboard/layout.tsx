@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper'
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -163,7 +165,18 @@ export default function Dashboard({ children }) {
                 >
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                        {children}
+                        <Grid container spacing={1}>
+                            <Grid item xs={12} md={12}>
+                                <Paper
+                                    sx={{
+                                    p: 2,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}>
+                                    {children}
+                                </Paper>
+                            </Grid>
+                        </Grid>
                         <Copyright sx={{ pt: 4 }} />
                     </Container>
                 </Box>

@@ -8,28 +8,32 @@ import IndexCard from '@/app/ui/components/cards/players/IndexCard';
 
 export default function Page() {
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={12} md={12}>
-                <Paper
-                    sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}>
-                    <div>
-                        <DarkTitle text = {'Eventos'}/>
-                    </div>
+        <>
+            <div>
+                <DarkTitle text = {'Eventos'}/>
+            </div>
 
-                    <div>
-                        <Link href='/dashboard/events/newgame'>
-                            <div>
-                                <p>Crear partido</p>
-                            </div>
-                        </Link>
-                    </div>
-                </Paper>
+            <div className='p-2.5'>
 
-            </Grid>
-        </Grid>
+                <Link href='/dashboard/events/newgame'>
+                    <div>
+                        <p>Crear partido</p>
+                    </div>
+                </Link>
+
+                <Link href='/dashboard/games'>
+                    <div>
+                        <p>Lista de partidos</p>
+                    </div>
+                </Link>
+
+                <Link href='/dashboard/games/arbitrate'>
+                    <div>
+                        <p>Arbitrar Partido</p>
+                    </div>
+                </Link>
+
+            </div>
+        </>
     );
 }

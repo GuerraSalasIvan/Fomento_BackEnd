@@ -48,7 +48,7 @@ const CalendarComponent = () => {
 
             return (
                 <Whisper placement="top" trigger="click" speaker={popoverContent}>
-                    <span style={{ color: 'red', cursor: 'pointer' }}>●</span>
+                    <span style={{ color: '#ebaa00', cursor: 'pointer' }}>●</span>
                 </Whisper>
             );
         }
