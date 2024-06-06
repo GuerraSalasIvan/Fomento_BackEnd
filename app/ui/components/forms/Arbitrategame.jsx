@@ -7,10 +7,24 @@ import TableRow from '@mui/material/TableRow';
 import GameInput from '@/app/ui/components/forms/games/GameInput';
 import GameInputPoints from '@/app/ui/components/forms/games/GameInputPoints';
 import ScoreBoard from '@/app/ui/components/sections/game/ScoreBoard';
+import axios from '@/lib/axios';
 
-export default function GameDetailsForm({ localTeam, visitTeam }) {
-    const [localPlayers, setLocalPlayers] = useState(localTeam.players.map(player => ({...player, points: 0, rebounds: 0, assists: 0, steals: 0, blocks: 0, fouls: 0})));
-    const [visitPlayers, setVisitPlayers] = useState(visitTeam.players.map(player => ({...player, points: 0, rebounds: 0, assists: 0, steals: 0, blocks: 0, fouls: 0})));
+export default function GameDetailsForm({ localTeam, visitTeam, gameId }) {
+    const initializePlayers = (team) => {
+        return team.players.map(player => ({
+            ...player,
+            dorsal: player.dorsal || '',
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0,
+            fouls: 0
+        }));
+    };
+
+    const [localPlayers, setLocalPlayers] = useState(initializePlayers(localTeam));
+    const [visitPlayers, setVisitPlayers] = useState(initializePlayers(visitTeam));
 
     const handlePlayerChange = (team, index, field, value) => {
         const updatedPlayers = team === 'local' ? [...localPlayers] : [...visitPlayers];
@@ -34,15 +48,41 @@ export default function GameDetailsForm({ localTeam, visitTeam }) {
     const localTotalPoints = getTotalPoints(localPlayers);
     const visitTotalPoints = getTotalPoints(visitPlayers);
 
+    const handleFinishGame = async () => {
+        const data = {
+            gameId,
+            players: [...localPlayers, ...visitPlayers].map(player => ({
+                game_id: gameId,
+                player_id: player.id,
+                number: player.dorsal,
+                points: player.points,
+                rebounds: player.rebounds,
+                assists: player.assists,
+                steals: player.steals,
+                blocks: player.blocks,
+                fouls: player.fouls,
+            })),
+        };
+
+        try {
+            await axios.post('/api/gamePlayer', data);
+            alert('Partido terminado y datos guardados con éxito');
+        } catch (error) {
+            console.error('Error al guardar los datos del partido:', error);
+            alert('Hubo un error al guardar los datos del partido.');
+        }
+    };
+
     return (
         <div className="grid grid-cols-1 gap-3">
-            <ScoreBoard local={localTeam.name} localscore={localTotalPoints} visitscore={visitTotalPoints} visit={visitTeam.name} />
+            {/* <ScoreBoard local={localTeam.name} localscore={localTotalPoints} visitscore={visitTotalPoints} visit={visitTeam.name} gameId={gameId} /> */}
 
             <div className="max-w-full overflow-auto">
                 <h2 className="text-lg font-semibold mb-2">{localTeam.name}</h2>
                 <Table size="small" className="min-w-full">
                     <TableHead>
                         <TableRow>
+                            <TableCell className="w-4 text-center font-bold"> Nº&nbsp;&nbsp; </TableCell>
                             <TableCell className="w-2/8 text-center font-bold">Jugador</TableCell>
                             <TableCell className="w-1/8 text-center">Puntos</TableCell>
                             <TableCell className="w-1/8 text-center">Rebotes</TableCell>
@@ -55,13 +95,21 @@ export default function GameDetailsForm({ localTeam, visitTeam }) {
                     <TableBody>
                         {localPlayers.map((player, index) => (
                             <TableRow key={index}>
-                                <TableCell className="w-2/7 font-bold">{player.full_name}</TableCell>
+                                <TableCell className="w-1/8">
+                                    <input
+                                        type="text"
+                                        value={player.dorsal}
+                                        onChange={(e) => handlePlayerChange('local', index, 'dorsal', e.target.value)}
+                                        className="w-full text-center border rounded"
+                                    />
+                                </TableCell>
+                                <TableCell className="w-2/8 font-bold">{player.full_name}</TableCell>
                                 <TableCell className="w-1/8">
                                     <GameInputPoints
                                         value={player.points}
                                         change={(e) => handlePlayerChange('local', index, 'points', e.target.value)}
-                                        clickplus={() => handleIncrement('local', index, 'points', 2)}
-                                        clickminus={() => handleIncrement('local', index, 'points', 3)}
+                                        clickplus={() => handleIncrement('local', index, 'points', 1)}
+                                        clickminus={() => handleIncrement('local', index, 'points', -1)}
                                     />
                                 </TableCell>
                                 <TableCell className="w-1/8">
@@ -125,6 +173,7 @@ export default function GameDetailsForm({ localTeam, visitTeam }) {
                 <Table size="small" className="min-w-full">
                     <TableHead>
                         <TableRow>
+                            <TableCell className="w-4 text-center font-bold"> Nº&nbsp;&nbsp; </TableCell>
                             <TableCell className="w-2/8 text-center font-bold">Jugador</TableCell>
                             <TableCell className="w-1/8 text-center">Puntos</TableCell>
                             <TableCell className="w-1/8 text-center">Rebotes</TableCell>
@@ -137,13 +186,21 @@ export default function GameDetailsForm({ localTeam, visitTeam }) {
                     <TableBody>
                         {visitPlayers.map((player, index) => (
                             <TableRow key={index}>
-                                <TableCell className="w-2/7 font-bold">{player.full_name}</TableCell>
+                                <TableCell className="w-1/8">
+                                    <input
+                                        type="text"
+                                        value={player.dorsal}
+                                        onChange={(e) => handlePlayerChange('visit', index, 'dorsal', e.target.value)}
+                                        className="w-full text-center border rounded"
+                                    />
+                                </TableCell>
+                                <TableCell className="w-2/8 font-bold">{player.full_name}</TableCell>
                                 <TableCell className="w-1/8">
                                     <GameInputPoints
                                         value={player.points}
                                         change={(e) => handlePlayerChange('visit', index, 'points', e.target.value)}
-                                        clickplus={() => handleIncrement('visit', index, 'points', 2)}
-                                        clickminus={() => handleIncrement('visit', index, 'points', 3)}
+                                        clickplus={() => handleIncrement('visit', index, 'points', 1)}
+                                        clickminus={() => handleIncrement('visit', index, 'points', -1)}
                                     />
                                 </TableCell>
                                 <TableCell className="w-1/8">
@@ -196,11 +253,19 @@ export default function GameDetailsForm({ localTeam, visitTeam }) {
                                         bgColorMinus="bg-red-200"
                                     />
                                 </TableCell>
-
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
+            </div>
+
+            <div className="mt-4">
+                <button
+                    onClick={handleFinishGame}
+                    className="px-4 py-2 bg-red-500 rounded hover:bg-blue-600"
+                >
+                    Terminar Partido
+                </button>
             </div>
         </div>
     );

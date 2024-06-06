@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
+import axios from '@/lib/axios';
+import { useAuth } from '@/hooks/auth';
 
-export default function ScoreBoard({ local, localscore, visit, visitscore }) {
+export default function ScoreBoard({ local, localscore, visit, visitscore, gameId }) {
     const [scoreHistory, setScoreHistory] = useState([]);
     const [activeQuarter, setActiveQuarter] = useState('');
+    const { user } = useAuth();
 
     const handleSaveScore = (quarter) => {
         let localQuarterScore = 0;
         let visitQuarterScore = 0;
+
+        const firstQuarter = scoreHistory.find(score => score.quarter === '1º cuarto');
+        const secondQuarter = scoreHistory.find(score => score.quarter === '2º cuarto');
+        const thirdQuarter = scoreHistory.find(score => score.quarter === '3º cuarto');
 
         switch (quarter) {
             case '1º cuarto':
@@ -15,18 +22,18 @@ export default function ScoreBoard({ local, localscore, visit, visitscore }) {
                 setActiveQuarter('2º cuarto');
                 break;
             case '2º cuarto':
-                localQuarterScore = localscore - scoreHistory.find(score => score.quarter === '1º cuarto')?.localScore || 0;
-                visitQuarterScore = visitscore - scoreHistory.find(score => score.quarter === '1º cuarto')?.visitScore || 0;
+                localQuarterScore = localscore - (firstQuarter?.localScore || 0);
+                visitQuarterScore = visitscore - (firstQuarter?.visitScore || 0);
                 setActiveQuarter('3º cuarto');
                 break;
             case '3º cuarto':
-                localQuarterScore = localscore - scoreHistory.find(score => score.quarter === '2º cuarto')?.localScore || 0;
-                visitQuarterScore = visitscore - scoreHistory.find(score => score.quarter === '2º cuarto')?.visitScore || 0;
+                localQuarterScore = localscore - (firstQuarter?.localScore || 0) - (secondQuarter?.localScore || 0);
+                visitQuarterScore = visitscore - (firstQuarter?.visitScore || 0) - (secondQuarter?.visitScore || 0);
                 setActiveQuarter('4º cuarto');
                 break;
             case '4º cuarto':
-                localQuarterScore = localscore - scoreHistory.find(score => score.quarter === '3º cuarto')?.localScore || 0;
-                visitQuarterScore = visitscore - scoreHistory.find(score => score.quarter === '3º cuarto')?.visitScore || 0;
+                localQuarterScore = localscore - (firstQuarter?.localScore || 0) - (secondQuarter?.localScore || 0) - (thirdQuarter?.localScore || 0);
+                visitQuarterScore = visitscore - (firstQuarter?.visitScore || 0) - (secondQuarter?.visitScore || 0) - (thirdQuarter?.visitScore || 0);
                 break;
             default:
                 break;
@@ -41,8 +48,29 @@ export default function ScoreBoard({ local, localscore, visit, visitscore }) {
         setScoreHistory(prevScoreHistory => [...prevScoreHistory, newScore]);
     };
 
-    const handleFinish = () => {
+    const handleFinish = async () => {
         setActiveQuarter('Fin');
+
+        const data = {
+            game_id: gameId,
+            local_first_cuarter: scoreHistory.find(score => score.quarter === '1º cuarto')?.localScore || 0,
+            visit_first_cuarter: scoreHistory.find(score => score.quarter === '1º cuarto')?.visitScore || 0,
+            local_second_cuarter: scoreHistory.find(score => score.quarter === '2º cuarto')?.localScore || 0,
+            visit_second_cuarter: scoreHistory.find(score => score.quarter === '2º cuarto')?.visitScore || 0,
+            local_third_cuarter: scoreHistory.find(score => score.quarter === '3º cuarto')?.localScore || 0,
+            visit_third_cuarter: scoreHistory.find(score => score.quarter === '3º cuarto')?.visitScore || 0,
+            local_fourth_cuarter: scoreHistory.find(score => score.quarter === '4º cuarto')?.localScore || 0,
+            visit_fourth_cuarter: scoreHistory.find(score => score.quarter === '4º cuarto')?.visitScore || 0,
+            mvp: 0,
+        };
+
+        axios.post('/api/gameDetail', data)
+            .then(response => {
+                console.log('Data saved successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('There was an error saving the data!', error);
+            });
     };
 
     return (
@@ -60,22 +88,27 @@ export default function ScoreBoard({ local, localscore, visit, visitscore }) {
                 <thead>
                     <tr>
                         <th className="px-4 py-2"></th>
-                        {scoreHistory.map((score, index) => (
-                            <th key={index} className="border px-4 py-2">{score.quarter}</th>
-                        ))}
+                        <th className="border px-4 py-2">1º Cuarto</th>
+                        <th className="border px-4 py-2">2º Cuarto</th>
+                        <th className="border px-4 py-2">3º Cuarto</th>
+                        <th className="border px-4 py-2">4º Cuarto</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td className="border px-4 py-2">{local}</td>
-                        {scoreHistory.map((score, index) => (
-                            <td key={index} className="border px-4 py-2">{score.localScore}</td>
+                        {['1º cuarto', '2º cuarto', '3º cuarto', '4º cuarto'].map((quarter, index) => (
+                            <td key={index} className="border px-4 py-2">
+                                {scoreHistory.find(score => score.quarter === quarter)?.localScore || ''}
+                            </td>
                         ))}
                     </tr>
                     <tr>
                         <td className="border px-4 py-2">{visit}</td>
-                        {scoreHistory.map((score, index) => (
-                            <td key={index} className="border px-4 py-2">{score.visitScore}</td>
+                        {['1º cuarto', '2º cuarto', '3º cuarto', '4º cuarto'].map((quarter, index) => (
+                            <td key={index} className="border px-4 py-2">
+                                {scoreHistory.find(score => score.quarter === quarter)?.visitScore || ''}
+                            </td>
                         ))}
                     </tr>
                 </tbody>
