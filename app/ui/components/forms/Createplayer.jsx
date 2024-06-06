@@ -21,15 +21,15 @@ const CreatePlayer = () => {
                 const csrfResponse = await fetch('http://127.0.0.1:8000/sanctum/csrf-cookie', {
                     credentials: 'include',
                 })
-                console.log('CSRF cookie response:', csrfResponse)
+                // console.log('CSRF cookie response:', csrfResponse)
 
                 const response = await fetch('http://127.0.0.1:8000/api/csrf-token', {
                     credentials: 'include',
                 })
-                console.log('CSRF token response:', response)
+                // console.log('CSRF token response:', response)
 
                 const data = await response.json()
-                console.log('CSRF token data:', data)
+                // console.log('CSRF token data:', data)
                 setCsrfToken(data.csrfToken)
             } catch (error) {
                 console.error('Failed to fetch CSRF token:', error)
@@ -61,17 +61,16 @@ const CreatePlayer = () => {
                 }),
                 credentials: 'include',
             })
-            console.log('Server response:', response)
-    
+
             if (!response.ok) {
                 const data = await response.json()
-                console.log('Error response data:', data)
+
                 setErrors(data.errors)
                 return
             }
 
             const responseData = await response.json()
-            console.log('Success response data:', responseData)
+
 
             router.push('/dashboard')
         } catch (error) {

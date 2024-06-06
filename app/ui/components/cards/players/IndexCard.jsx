@@ -12,7 +12,6 @@ export default function Page() {
             try {
                 const response = await fetch("http://127.0.0.1:8000/api/player");
                 const data = await response.json();
-                console.log('Players: ', data);
                 setplayerData(data || []);
             } catch (error) {
                 console.error("Error fetching game data: ", error);

@@ -66,10 +66,10 @@ export default function ScoreBoard({ local, localscore, visit, visitscore, gameI
 
         axios.post('/api/gameDetail', data)
             .then(response => {
-                console.log('Data saved successfully:', response.data);
+                // console.log('Data saved successfully:', response.data);
             })
             .catch(error => {
-                console.error('There was an error saving the data!', error);
+                // console.error('There was an error saving the data!', error);
             });
     };
 

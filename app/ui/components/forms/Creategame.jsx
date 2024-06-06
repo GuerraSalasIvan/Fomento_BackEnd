@@ -30,7 +30,7 @@ export default function GameCreate() {
                 ]);
 
                 setTeams(Array.isArray(teamsRes.data.teams) ? teamsRes.data.teams : []);
-                console.log('Aqui', teamsRes.data.teams);
+                
                 setLeagues(Array.isArray(leaguesRes.data) ? leaguesRes.data : []);
                 setLocations(Array.isArray(locationsRes.data) ? locationsRes.data : []);
             } catch (error) {
@@ -59,7 +59,7 @@ export default function GameCreate() {
                 },
             });
 
-            console.log('Response from server:', response.data);
+            
             reset();
             router.push('/dashboard/games');
         } catch (error) {

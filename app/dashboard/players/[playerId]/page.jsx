@@ -2,6 +2,7 @@
 
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import PlayerDetail from '@/app/ui/components/sections/dashboard/player/PlayerDetail';
 import PlayerGames from '@/app/ui/components/sections/dashboard/player/PlayerGames';
@@ -17,7 +18,6 @@ export default function Page({ params }) {
                 const response = await fetch(`http://127.0.0.1:8000/api/player/${playerId}`);
                 const data = await response.json();
                 setPlayerData(data || {});
-                console.log(data)
             } catch (error) {
                 console.error("Error fetching player data: ", error);
                 setPlayerData({});
@@ -33,11 +33,14 @@ export default function Page({ params }) {
     }
 
     if (!playerData || !playerData.player) {
-        return <div>Error loading player data</div>;
+        return  <div className='flex justify-between items-center'>
+                    <p>Este jugador no tiene registro de partidos todavía</p>
+                    <Link className='px-4 py-1 bg-menu-bg-950 text-white rounded-lg' href={`/dashboard/players`}> Volver </Link>
+                </div>
     }
 
     return (
-        <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+        <>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={12} lg={5}>
                     <div>
@@ -50,6 +53,6 @@ export default function Page({ params }) {
                     </div>
                 </Grid>
             </Grid>
-        </Paper>
+        </>
     );
 }

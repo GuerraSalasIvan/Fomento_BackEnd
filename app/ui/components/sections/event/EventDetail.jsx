@@ -16,7 +16,7 @@ import Image from 'next/image';
 
 
 export default function EventDetail({eventData}){
-    console.log(eventData);
+
     return (
         <>
             <LeftArrowLink href={'/home/events'}/>

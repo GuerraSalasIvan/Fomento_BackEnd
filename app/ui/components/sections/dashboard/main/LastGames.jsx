@@ -14,7 +14,7 @@ export default function LastGames() {
             try {
                 const response = await fetch("http://127.0.0.1:8000/api/home");
                 const data = await response.json();
-                console.log('Last Games: ',data);
+                
                 setGameData(data || []);
             } catch (error) {
                 console.error("Error fetching game data: ", error);

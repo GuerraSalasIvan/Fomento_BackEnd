@@ -12,7 +12,7 @@ export default function Page() {
             try {
                 const response = await fetch("http://127.0.0.1:8000/api/team");
                 const data = await response.json();
-                console.log('Teams: ', data);
+
                 setTeamData(data.teams || []);
             } catch (error) {
                 console.error("Error fetching team data: ", error);

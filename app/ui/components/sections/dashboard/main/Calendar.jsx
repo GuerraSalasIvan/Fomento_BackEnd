@@ -32,7 +32,6 @@ const CalendarComponent = () => {
                 gameDate.getFullYear() === date.getFullYear()
             );
         });
-        console.log(gamesOnDate);
         if (gamesOnDate.length > 0) {
             const popoverContent = (
                 <Popover>

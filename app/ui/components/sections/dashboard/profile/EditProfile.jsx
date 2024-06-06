@@ -36,7 +36,7 @@ const UpdateProfile = () => {
                 birthdate: user.player.birthdate || '',
                 image: null,
             });
-            setImagePreview(user.player.imageURL); // Set initial image preview
+            setImagePreview(user.player.imageURL);
         }
     }, [user]);
 
@@ -45,7 +45,7 @@ const UpdateProfile = () => {
         if (name === 'image') {
             const file = files[0];
             setFormData({ ...formData, image: file });
-            setImagePreview(URL.createObjectURL(file)); // Update image preview
+            setImagePreview(URL.createObjectURL(file));
         } else {
             setFormData({ ...formData, [name]: value });
         }
@@ -61,6 +61,7 @@ const UpdateProfile = () => {
                 setErrors,
                 setMessage,
             });
+            router.reload();
         } finally {
             setIsSubmitting(false);
         }
@@ -68,7 +69,6 @@ const UpdateProfile = () => {
 
     return (
         <div className='p-3'>
-            {message && <p className="text-green-500 mb-4">{message}</p>}
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-x-4">
                     <div className="flex flex-col items-center space-y-4">
@@ -116,7 +116,7 @@ const UpdateProfile = () => {
                                 name="image"
                                 accept="image/*"
                                 onChange={handleChange}
-                                className="mt-1 block w-full"
+                                className="mt-1 block w-full rounded-none"
                             />
                             <InputError messages={errors.image} />
                         </div>
@@ -146,13 +146,17 @@ const UpdateProfile = () => {
                     />
                     <InputError messages={errors.birthdate} />
                 </div>
-                <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                >
-                    {isSubmitting ? 'Actualizando...' : 'Actualizar'}
-                </Button>
+                <div className='flex justify-end pt-5 items-center'>
+                {message && <p className="text-green-500 mx-6">{message}</p>}
+
+                    <Button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="py-2 px-4 bg-menu-bg-950 text-white rounded-md hover:text-blue-600">
+                        {isSubmitting ? 'Actualizando...' : 'Actualizar'}
+                    </Button>
+                </div>
+
             </form>
         </div>
     );
