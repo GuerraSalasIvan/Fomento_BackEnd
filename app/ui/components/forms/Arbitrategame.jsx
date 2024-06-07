@@ -75,7 +75,7 @@ export default function GameDetailsForm({ localTeam, visitTeam, gameId }) {
 
     return (
         <div className="grid grid-cols-1 gap-3">
-            {/* <ScoreBoard local={localTeam.name} localscore={localTotalPoints} visitscore={visitTotalPoints} visit={visitTeam.name} gameId={gameId} /> */}
+            <ScoreBoard local={localTeam.name} localscore={localTotalPoints} visitscore={visitTotalPoints} visit={visitTeam.name} gameId={gameId} />
 
             <div className="max-w-full overflow-auto">
                 <h2 className="text-lg font-semibold mb-2">{localTeam.name}</h2>

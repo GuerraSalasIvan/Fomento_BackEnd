@@ -119,7 +119,7 @@ export default function Dashboard({ children }) {
                             <MenuIcon />
                         </IconButton>
                         <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-                            {/* <Image src={logo} alt="alt" width={156} height={50} className="py-1.5" /> */}
+                            <Image src={logo} alt="alt" width={156} height={50} className="py-1.5" />
                         </Typography>
                         <div className="mr-4 flex items-center">
                             <p>Hola, <strong>{user ? user.name : 'Cargando...'}</strong></p>

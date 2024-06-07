@@ -10,6 +10,7 @@ import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import Calendar from '@/app/ui/components/sections/dashboard/main/Calendar';
 import DashboardEvent from '@/app/ui/components/cards/events/DashBoardEvent';
 import LastGames from '@/app/ui/components/sections/dashboard/main/LastGames';
+import UserGameCard from '@/app/ui/components/cards/games/UserGameCard';
 
 export default function Page() {
     return (
@@ -18,6 +19,7 @@ export default function Page() {
             <Grid item xs={12} md={8} lg={8}>
                     <div>
                         <DarkTitle text = {'Mis eventos'}/>
+                        <UserGameCard />
                     </div>
 
                     <div>

@@ -9,12 +9,6 @@ export default function page() {
     return (
         <Grid container spacing={1}>
             <Grid item xs={12} md={12}>
-                <Paper
-                    sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}>
                     <div>
                         <DarkTitle text = {'Crear encuentro'}/>
                     </div>
@@ -22,8 +16,6 @@ export default function page() {
                     <div>
                         <Creategame />
                     </div>
-                </Paper>
-
             </Grid>
         </Grid>
     );

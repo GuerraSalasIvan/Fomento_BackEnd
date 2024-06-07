@@ -7,6 +7,8 @@ import Input from '@/components/Input';
 import Label from '@/components/Label';
 import Button from '@/components/Button';
 import InputError from '@/components/InputError';
+import unknown from '@/public/assests/img/default_avatar.jpg';
+import Image from 'next/image';
 
 const UpdateProfile = () => {
     const router = useRouter();
@@ -61,7 +63,6 @@ const UpdateProfile = () => {
                 setErrors,
                 setMessage,
             });
-            router.reload();
         } finally {
             setIsSubmitting(false);
         }
@@ -72,16 +73,16 @@ const UpdateProfile = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-x-4">
                     <div className="flex flex-col items-center space-y-4">
-                        {imagePreview && (
-                            <div className="mb-4">
-                                <img
-                                    src={imagePreview}
-                                    alt="Profile Preview"
-                                    className="h-64 w-64 object-cover rounded-full"
-                                />
-                            </div>
-                        )}
-                    </div>
+                        <div className="mb-4">
+                            <Image
+                                src={imagePreview || unknown}
+                                alt="Profile Preview"
+                                className="h-64 w-64 object-cover rounded-full"
+                                width={256} // Actualizamos el width y height para que coincidan con la clase de tailwind aplicada
+                                height={256}
+                            />
+                        </div>
+                    </div> 
 
                     <div className="flex-grow space-y-4">
                         <div>
@@ -147,7 +148,7 @@ const UpdateProfile = () => {
                     <InputError messages={errors.birthdate} />
                 </div>
                 <div className='flex justify-end pt-5 items-center'>
-                {message && <p className="text-green-500 mx-6">{message}</p>}
+                    {message && <p className="text-green-500 mx-6">{message}</p>}
 
                     <Button
                         type="submit"

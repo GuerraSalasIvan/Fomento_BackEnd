@@ -1,20 +1,17 @@
-'use client'
-
+import React from 'react';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
-import { format } from "date-fns";
-import React, { useState, useEffect } from 'react';
 import HomeCard from '@/app/ui/components/cards/games/HomeCard';
-import { Home } from '@mui/icons-material';
+import { format } from "date-fns";
 
 export default function LastGames() {
-    const [gameData, setGameData] = useState([]);
+    const [gameData, setGameData] = React.useState([]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         async function fetchGameData() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/api/home");
+                const response = await fetch("http://127.0.0.1:8000/api/arbitrated");
                 const data = await response.json();
-                
+
                 setGameData(data || []);
             } catch (error) {
                 console.error("Error fetching game data: ", error);
@@ -35,11 +32,10 @@ export default function LastGames() {
                 <div className="flex-1 text-center">MVP</div>
             </div>
 
-
             {gameData?.length > 0 ? (
-                gameData.map((gameData, index) => (
-                    <div key={index} className="my-1.5 ">
-                        <HomeCard gameData={gameData}/>
+                gameData.map((game, index) => (
+                    <div key={index} className="my-1.5">
+                        <HomeCard gameData={game}/>
                     </div>
                 ))
             ) : (
