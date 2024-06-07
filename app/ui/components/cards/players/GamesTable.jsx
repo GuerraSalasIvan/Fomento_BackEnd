@@ -42,9 +42,6 @@ export default function Orders({gameData}) {
             ))}
             </TableBody>
         </Table>
-        <Link color="primary" href="#" sx={{ mt: 3 }}>
-            See more events
-        </Link>
         </React.Fragment>
     );
 }

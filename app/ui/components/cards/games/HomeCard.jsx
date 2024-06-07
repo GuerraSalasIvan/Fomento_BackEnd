@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function HomeCard({ gameData }) {
+    const [mvpName, setMvpName] = useState('Cargando...');
+    
+    useEffect(() => {
+        const fetchMvpName = async (mvpId) => {
+            if (mvpId === 0) {
+                setMvpName('Por definir');
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/player/${mvpId}`);
+                const data = await response.json();
+                setMvpName(data.player.full_name);
+            } catch (error) {
+                console.error('Error fetching player data:', error);
+                setMvpName('Error al cargar');
+            }
+        };
+
+        fetchMvpName(gameData.game_details.mvp);
+    }, [gameData.game_details.mvp]);
+
     // Calcular el resultado sumando los puntajes de los cuartos
     const localTeamScore = gameData.game_details.local_first_cuarter +
                            gameData.game_details.local_second_cuarter +
@@ -18,7 +40,7 @@ export default function HomeCard({ gameData }) {
             <div className="flex-1 text-center">{localTeamScore} - {visitTeamScore}</div>
             <div className="flex-1 text-center font-bold">{gameData.visit_team.name}</div>
             <div className="flex-1 text-center">{gameData.leagues.name}</div>
-            <div className="flex-1 text-center">{gameData.game_details.mvp}</div>
+            <div className="flex-1 text-center">{mvpName}</div>
         </div>
     );
 }

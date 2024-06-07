@@ -56,7 +56,7 @@ const Page = () => {
                     id="name"
                     type="text"
                     value={name}
-                    className="block mt-1 w-full"
+                    className="block mt-1 w-full border border-menu-bg-200 pl-1.5"
                     onChange={event => setName(event.target.value)}
                     required
                     autoFocus
@@ -72,7 +72,7 @@ const Page = () => {
                     id="playerFullName"
                     type="text"
                     value={playerFullName}
-                    className="block mt-1 w-full"
+                    className="block mt-1 w-full border border-menu-bg-200 pl-1.5"
                     onChange={event => setPlayerFullName(event.target.value)}
                     required
                 />
@@ -87,7 +87,7 @@ const Page = () => {
                     id="email"
                     type="email"
                     value={email}
-                    className="block mt-1 w-full"
+                    className="block mt-1 w-full border border-menu-bg-200 pl-1.5"
                     onChange={event => setEmail(event.target.value)}
                     required
                 />
@@ -102,7 +102,7 @@ const Page = () => {
                     id="playerBirthdate"
                     type="date"
                     value={playerBirthdate}
-                    className="block mt-1 w-full"
+                    className="block mt-1 w-full border border-menu-bg-200 pl-1.5"
                     onChange={event => setPlayerBirthdate(event.target.value)}
                     required
                 />
@@ -116,12 +116,12 @@ const Page = () => {
                 <select
                     id="playerPosition"
                     value={playerPosition}
-                    className="block mt-1 w-full"
+                    className="block mt-1 py-0.5 w-full shadow-sm rounded-md border border-menu-bg-200 pl-1.5"
                     onChange={event => setPlayerPosition(event.target.value)}
                     required
                 >
                     <option value="1">Base</option>
-                    <option value="2">Escolta</option>  
+                    <option value="2">Escolta</option>
                     <option value="3">Alero</option>
                     <option value="4">Ala-pivot</option>
                     <option value="5">Pivot</option>
@@ -138,7 +138,7 @@ const Page = () => {
                     id="password"
                     type="password"
                     value={password}
-                    className="block mt-1 w-full"
+                    className="block mt-1 w-full border border-menu-bg-200 pl-1.5"
                     onChange={event => setPassword(event.target.value)}
                     required
                     autoComplete="new-password"
@@ -157,7 +157,7 @@ const Page = () => {
                     id="passwordConfirmation"
                     type="password"
                     value={passwordConfirmation}
-                    className="block mt-1 w-full"
+                    className="block mt-1 w-full border border-menu-bg-200 pl-1.5"
                     onChange={event =>
                         setPasswordConfirmation(event.target.value)
                     }

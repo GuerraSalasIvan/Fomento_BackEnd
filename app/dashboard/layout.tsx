@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import * as React from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
@@ -14,14 +14,13 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper'
+import Paper from '@mui/material/Paper';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '@/app/ui/templates/dashboard/listItems';
-import { useAuth } from '@/hooks/auth'
-
+import { useAuth } from '@/hooks/auth';
 import Image from 'next/image';
 import logo from '@/public/assests/img/logo_mz_rosa.png';
 import unknonImage from '@/public/assests/img/default_avatar.jpg';
@@ -123,7 +122,6 @@ export default function Dashboard({ children }) {
                         </Typography>
                         <div className="mr-4 flex items-center">
                             <p>Hola, <strong>{user ? user.name : 'Cargando...'}</strong></p>
-                            {/* <Image src={user ? user.player.imageURL || unknonImage : unknonImage} alt="alt" width={35} height={35} className='rounded-full ml-3'/> */}
                         </div>
                         <button
                             onClick={logout}
@@ -171,10 +169,11 @@ export default function Dashboard({ children }) {
                             <Grid item xs={12} md={12}>
                                 <Paper
                                     sx={{
-                                    p: 2,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                }}>
+                                        p: 2,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                    }}
+                                >
                                     {children}
                                 </Paper>
                             </Grid>

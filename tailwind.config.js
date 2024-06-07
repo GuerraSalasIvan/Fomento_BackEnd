@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       'white': '#ffffff',
       'pink': '#E3017E',
+      'blue-card':'#599EC0',
       'menu-bg': {
         '50': '#f6f6f6',
         '100': '#e7e7e7',

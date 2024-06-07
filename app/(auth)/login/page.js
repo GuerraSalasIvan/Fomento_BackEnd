@@ -62,7 +62,7 @@ const Login = () => {
                         id="email"
                         type="email"
                         value={email}
-                        className="block mt-1 w-full"
+                        className="block mt-1 w-full border border-menu-bg-200 pl-1.5"
                         onChange={event => setEmail(event.target.value)}
                         required
                         autoFocus
@@ -79,7 +79,7 @@ const Login = () => {
                         id="password"
                         type="password"
                         value={password}
-                        className="block mt-1 w-full"
+                        className="block mt-1 w-full border border-menu-bg-200 pl-1.5"
                         onChange={event => setPassword(event.target.value)}
                         required
                         autoComplete="current-password"
