@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { format } from "date-fns";
 import { useAuth } from '@/hooks/auth';
 
@@ -41,17 +42,17 @@ export default function UserGameCard() {
             ) : userTeamGames.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {userTeamGames.map((game, index) => (
-                        <div key={index} className="bg-blue-card shadow-md rounded-lg p-4">
-                            <div className="mb-4">
-                                <p className="text-menu-bg-700 px-3 py-0.5 rounded-lg bg-menu-bg-50 font-semibold">{format(new Date(game.match_date), "d/M/yyyy")} - {format(new Date(game.match_date), "HH:mm")}</p>
+                            <div key={index} className="bg-blue-card shadow-md rounded-lg p-4">
+                                <div className="mb-4">
+                                    <p className="text-menu-bg-700 px-3 py-0.5 rounded-lg bg-menu-bg-50 font-semibold">{format(new Date(game.match_date), "d/M/yyyy")} - {format(new Date(game.match_date), "HH:mm")}</p>
+                                </div>
+                                <div className="mb-4">
+                                    <p className="text-white font-extrabold m-0">{game.local_team.name} vs {game.visit_team.name}</p>
+                                </div>
+                                <div>
+                                    <p className="text-white">Ubicación: {game.ubications.name}</p>
+                                </div>
                             </div>
-                            <div className="mb-4">
-                                <p className="text-white font-extrabold m-0">{game.local_team.name} vs {game.visit_team.name}</p>
-                            </div>
-                            <div>
-                                <p className="text-white">Ubicación: {game.ubications.name}</p>
-                            </div>
-                        </div>
                     ))}
                 </div>
             ) : (

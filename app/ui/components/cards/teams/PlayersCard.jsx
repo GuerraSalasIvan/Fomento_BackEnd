@@ -16,11 +16,11 @@ const positionOrder = {
 
 const positionNames = {
     0: 'Cuerpo técnico',
-    1: 'Base',
-    2: 'Escolta',
-    3: 'Alero',
-    4: 'Ala-Pivot',
-    5: 'Pivot',
+    1: 'Bases',
+    2: 'Escoltas',
+    3: 'Aleros',
+    4: 'Ala-Pivots',
+    5: 'Pivots',
 };
 
 export default function Page({ teamId }) {
@@ -84,7 +84,7 @@ export default function Page({ teamId }) {
             <div>
                 {Object.entries(groupedPlayers).map(([position, players]) => (
                     <div key={position}>
-                        <h3 className="m-3">{position}</h3>
+                        <h3 className="m-3 font-bold text-xl text-menu-bg-800">{position}</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {players.map(player => (
                                 <div key={player.id}>

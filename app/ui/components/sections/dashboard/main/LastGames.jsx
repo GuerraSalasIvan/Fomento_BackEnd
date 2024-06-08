@@ -2,6 +2,7 @@ import React from 'react';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import HomeCard from '@/app/ui/components/cards/games/HomeCard';
 import { format } from "date-fns";
+import Link from 'next/link';
 
 export default function LastGames() {
     const [gameData, setGameData] = React.useState([]);
@@ -34,8 +35,12 @@ export default function LastGames() {
 
             {gameData?.length > 0 ? (
                 gameData.map((game, index) => (
-                    <div key={index} className="my-1.5">
-                        <HomeCard gameData={game}/>
+                    <div key={index} className="my-2">
+                        <Link href={`/dashboard/games/${game.id}`} className='no-underline hover:no-underline '>
+                            <div className="hover:bg-menu-bg-50">
+                                <HomeCard gameData={game} />
+                            </div>
+                        </Link>
                     </div>
                 ))
             ) : (

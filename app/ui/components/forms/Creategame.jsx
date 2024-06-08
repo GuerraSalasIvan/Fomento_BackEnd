@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 
@@ -30,7 +31,6 @@ export default function GameCreate() {
                 ]);
 
                 setTeams(Array.isArray(teamsRes.data.teams) ? teamsRes.data.teams : []);
-                
                 setLeagues(Array.isArray(leaguesRes.data) ? leaguesRes.data : []);
                 setLocations(Array.isArray(locationsRes.data) ? locationsRes.data : []);
             } catch (error) {
@@ -59,7 +59,6 @@ export default function GameCreate() {
                 },
             });
 
-            
             reset();
             router.push('/dashboard/games');
         } catch (error) {
@@ -70,7 +69,7 @@ export default function GameCreate() {
         }
     };
 
-    const filteredTeams = selectedLeague 
+    const filteredTeams = selectedLeague
         ? teams.filter((team) => team.league_id === parseInt(selectedLeague))
         : teams;
 
@@ -83,6 +82,11 @@ export default function GameCreate() {
                     </label>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DateTimePicker
+                            viewRenderers={{
+                                hours: renderTimeViewClock,
+                                minutes: renderTimeViewClock,
+                                seconds: renderTimeViewClock,
+                            }}
                             value={matchDate}
                             onChange={(newValue) => setMatchDate(newValue)}
                             renderInput={(params) => <input {...params} />}
@@ -166,7 +170,7 @@ export default function GameCreate() {
                 <div>
                     <button
                         type="submit"
-                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-menu-bg-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-menu-bg-700 hover:text-primary-600 hover:bg-menu-bg-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         disabled={loading}
                     >
                         {loading ? 'Creating...' : 'Create Game'}

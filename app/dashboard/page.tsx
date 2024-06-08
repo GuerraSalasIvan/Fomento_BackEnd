@@ -18,7 +18,7 @@ export default function Page() {
               {/* Chart */}
             <Grid item xs={12} md={8} lg={8}>
                     <div>
-                        <DarkTitle text = {'Mis eventos'}/>
+                        <DarkTitle text = {'Mis partidos'}/>
                         <UserGameCard />
                     </div>
 

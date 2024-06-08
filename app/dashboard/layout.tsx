@@ -121,7 +121,13 @@ export default function Dashboard({ children }) {
                             <Image src={logo} alt="alt" width={156} height={50} className="py-1.5" />
                         </Typography>
                         <div className="mr-4 flex items-center">
-                            <p>Hola, <strong>{user ? user.name : 'Cargando...'}</strong></p>
+                            <p>Hola,
+                                {user && (
+                                    <Link href={`/dashboard/players/${user.player.id}`} className='focus:outline-none hover:no-underline text-white hover:text-menu-bg-200 text-base'>
+                                        <strong> {user.name}</strong>
+                                    </Link>
+                                )}
+                            </p>
                         </div>
                         <button
                             onClick={logout}

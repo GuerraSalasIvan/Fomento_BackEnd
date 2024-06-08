@@ -30,7 +30,9 @@ export default function Orders({gameData}) {
 
             <TableBody>
             {gameData.map((game) => (
-                <TableRow key={game.id}>
+                <TableRow
+                    key={game.id}
+                    className=' no-underline hover:no-underline'>
                     <TableCell>{format(new Date(game.game.match_date), "EEE. dd/MM", { locale: es })}</TableCell>
                     <TableCell>{game.rival_team}</TableCell>
                     <TableCell className='text-center'>{game.points}</TableCell>
@@ -39,6 +41,7 @@ export default function Orders({gameData}) {
                     <TableCell className='text-center'> {game.steals}</TableCell>
                     <TableCell className='text-center'> {game.blocks}</TableCell>
                 </TableRow>
+
             ))}
             </TableBody>
         </Table>
