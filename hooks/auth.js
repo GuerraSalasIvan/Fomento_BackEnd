@@ -18,7 +18,10 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
             }),
     )
 
-    const csrf = () => axios.get('/sanctum/csrf-cookie')
+    const csrf = async () => {
+        const response = await axios.get('/sanctum/csrf-cookie');
+        console.log('CSRF Token:', document.cookie);
+    };
 
     const register = async ({ setErrors, ...props }) => {
         await csrf()
