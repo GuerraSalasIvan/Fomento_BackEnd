@@ -92,7 +92,7 @@ export default function Dashboard({ children }) {
         setOpen(!open);
     };
 
-    const { user, logout } = useAuth({ middleware: 'guest' });
+    const { user, logout } = useAuth({ middleware: 'guest', redirectIfAuthenticated: null });
 
     return (
         <ThemeProvider theme={defaultTheme}>

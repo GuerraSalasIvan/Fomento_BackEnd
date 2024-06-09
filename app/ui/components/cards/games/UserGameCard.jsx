@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { useAuth } from '@/hooks/auth';
 
 export default function UserGameCard() {
-    const { user } = useAuth({ middleware: 'guest' });
+    const { user } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: null});
     const [userTeamGames, setUserTeamGames] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 

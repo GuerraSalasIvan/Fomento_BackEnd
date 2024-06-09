@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from '@/hooks/auth';
 
 export default function LogOutButton() {
-    const { user, logout } = useAuth({ middleware: 'guest' });
+    const { user, logout } = useAuth({ middleware: 'guest', redirectIfAuthenticated: null });
 
     return (
         <>
