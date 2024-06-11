@@ -32,7 +32,7 @@ export default function Page({ teamId }) {
     useEffect(() => {
         async function fetchTeamData() {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/team/${teamId}`);
+                const response = await fetch(`https://proyectointegrado-production-0e79.up.railway.app//api/team/${teamId}`);
                 if (!response.ok) {
                     throw new Error(`Error fetching data: ${response.statusText}`);
                 }

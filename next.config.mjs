@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['localhost', '127.0.0.1', '34.234.193.244'],
+        domains: ['localhost', 'https://proyectointegrado-production-0e79.up.railway.app/', '35.175.64.140', 'proyectointegrado-production-0e79.up.railway.app'],
     },
 };
 

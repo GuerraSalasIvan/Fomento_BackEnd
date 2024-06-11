@@ -8,7 +8,7 @@ export default function DashBoardEvent(){
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/api/game");
+                const response = await fetch("https://proyectointegrado-production-0e79.up.railway.app//api/game");
                 const data = await response.json();
                 setEventData(data);
                 setIsLoading(false); // Una vez que se cargan los datos, actualiza el estado de isLoading

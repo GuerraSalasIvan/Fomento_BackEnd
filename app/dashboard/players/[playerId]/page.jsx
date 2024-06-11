@@ -18,7 +18,7 @@ export default function Page({ params }) {
     useEffect(() => {
         async function fetchPlayerData() {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/player/${playerId}`);
+                const response = await fetch(`https://proyectointegrado-production-0e79.up.railway.app//api/player/${playerId}`);
                 const data = await response.json();
                 setPlayerData(data || {});
             } catch (error) {

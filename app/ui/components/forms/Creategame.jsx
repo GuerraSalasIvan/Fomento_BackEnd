@@ -25,9 +25,9 @@ export default function GameCreate() {
         const fetchData = async () => {
             try {
                 const [teamsRes, leaguesRes, locationsRes] = await Promise.all([
-                    axios.get('http://127.0.0.1:8000/api/team'),
-                    axios.get('http://127.0.0.1:8000/api/leagues'),
-                    axios.get('http://127.0.0.1:8000/api/ubications')
+                    axios.get('https://proyectointegrado-production-0e79.up.railway.app//api/team'),
+                    axios.get('https://proyectointegrado-production-0e79.up.railway.app//api/leagues'),
+                    axios.get('https://proyectointegrado-production-0e79.up.railway.app//api/ubications')
                 ]);
 
                 setTeams(Array.isArray(teamsRes.data.teams) ? teamsRes.data.teams : []);
