@@ -53,7 +53,7 @@ export default function GameCreate() {
             formData.append('league_id', data.league_id);
             formData.append('ubication_id', data.ubication_id);
 
-            const response = await axios.post('http://localhost:8000/api/game', formData, {
+            const response = await axios.post('https://proyectointegrado-production-0e79.up.railway.app/api/game', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
