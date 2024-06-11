@@ -111,7 +111,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     const assignTeam = async ({ playerId, teamId }) => {
         await csrf();
-        return axios.post('https://proyectointegrado-production-0e79.up.railway.app//api/assignTeam', {
+        return axios.post('https://proyectointegrado-production-0e79.up.railway.app/api/assignTeam', {
             playerId,
             teamId
         }, {

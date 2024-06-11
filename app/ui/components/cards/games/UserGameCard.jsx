@@ -11,7 +11,7 @@ export default function UserGameCard() {
     useEffect(() => {
         async function fetchUserTeamGames() {
             try {
-                const response = await fetch("https://proyectointegrado-production-0e79.up.railway.app//api/game");
+                const response = await fetch("https://proyectointegrado-production-0e79.up.railway.app/api/game");
                 const data = await response.json();
 
                 const userTeamId = user?.player?.teams?.[0]?.id;

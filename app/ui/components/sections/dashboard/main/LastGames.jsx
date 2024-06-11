@@ -10,7 +10,7 @@ export default function LastGames() {
     React.useEffect(() => {
         async function fetchGameData() {
             try {
-                const response = await fetch("https://proyectointegrado-production-0e79.up.railway.app//api/arbitrated");
+                const response = await fetch("https://proyectointegrado-production-0e79.up.railway.app/api/arbitrated");
                 const data = await response.json();
 
                 setGameData(data || []);

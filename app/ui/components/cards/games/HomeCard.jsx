@@ -11,7 +11,7 @@ export default function HomeCard({ gameData }) {
             }
 
             try {
-                const response = await fetch(`https://proyectointegrado-production-0e79.up.railway.app//api/player/${mvpId}`);
+                const response = await fetch(`https://proyectointegrado-production-0e79.up.railway.app/api/player/${mvpId}`);
                 const data = await response.json();
                 setMvpName(data.player.full_name);
             } catch (error) {

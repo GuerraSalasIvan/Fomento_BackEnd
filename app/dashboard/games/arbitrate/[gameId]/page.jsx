@@ -13,7 +13,7 @@ export default function ArbitrateGamePage({ params }) {
     useEffect(() => {
         const fetchGameData = async () => {
             try {
-                const response = await axios.get(`https://proyectointegrado-production-0e79.up.railway.app//api/game/${gameId}`);
+                const response = await axios.get(`https://proyectointegrado-production-0e79.up.railway.app/api/game/${gameId}`);
                 setGameData(response.data);
             } catch (error) {
                 setError('Error fetching game data');

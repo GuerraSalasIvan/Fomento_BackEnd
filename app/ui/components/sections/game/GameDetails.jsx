@@ -11,7 +11,7 @@ export default function GameDetails({ gameId }) {
     useEffect(() => {
         async function fetchgameData() {
             try {
-                const response = await fetch(`https://proyectointegrado-production-0e79.up.railway.app//api/game/details/${gameId}`);
+                const response = await fetch(`https://proyectointegrado-production-0e79.up.railway.app/api/game/details/${gameId}`);
                 const data = await response.json();
                 setgameData(data || {});
             } catch (error) {
