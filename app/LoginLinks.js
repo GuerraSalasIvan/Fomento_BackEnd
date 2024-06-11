@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/auth';
 
 
 const LoginLinks = () => {
-    const { user, logout } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: null})
+    const { user, logout } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: '/null'})
 
     return (
         <div className="hidden fixed top-0 right-0 px-6 py-4 sm:block">

@@ -7,21 +7,28 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
     const router = useRouter()
     const params = useParams()
 
-    const { data: user, error, mutate } = useSWR('/api/user', () =>
-        axios
+    const csrf = async () => {
+        try {
+            const response = await axios.get('/sanctum/csrf-cookie');
+            console.log('CSRF Cookie Set:', response);
+        } catch (error) {
+            console.error('Error setting CSRF cookie:', error);
+        }
+    };
+
+    const fetchUser = async () => {
+        await csrf();
+        return axios
             .get('/api/user')
             .then(res => res.data)
             .catch(error => {
                 if (error.response.status !== 409) throw error
 
                 router.push('/verify-email')
-            }),
-    )
-
-    const csrf = async () => {
-        const response = await axios.get('/sanctum/csrf-cookie');
-        console.log('CSRF Token:', document.cookie);
+            });
     };
+
+    const { data: user, error, mutate } = useSWR('/api/user', fetchUser);
 
     const register = async ({ setErrors, ...props }) => {
         await csrf()
@@ -113,6 +120,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
             }
         });
     }
+
     const updateProfile = async ({ name, full_name, email, birthdate, image, setErrors, setMessage }) => {
         await csrf();
 

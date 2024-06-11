@@ -9,7 +9,7 @@ export default function AssingTeam() {
     const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState('');
     const [loading, setLoading] = useState(false);
-    const { user, assignTeam } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: null});
+    const { user, assignTeam } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: '/null'});
     const router = useRouter();
 
     useEffect(() => {

@@ -108,8 +108,8 @@ export default function GameDetailsForm({ localTeam, visitTeam, gameId }) {
                                     <GameInputPoints
                                         value={player.points}
                                         change={(e) => handlePlayerChange('local', index, 'points', e.target.value)}
-                                        clickplus={() => handleIncrement('local', index, 'points', 1)}
-                                        clickminus={() => handleIncrement('local', index, 'points', -1)}
+                                        clickplus={() => handleIncrement('local', index, 'points', 2)}
+                                        clickminus={() => handleIncrement('local', index, 'points', 3)}
                                     />
                                 </TableCell>
                                 <TableCell className="w-1/8">
@@ -199,8 +199,8 @@ export default function GameDetailsForm({ localTeam, visitTeam, gameId }) {
                                     <GameInputPoints
                                         value={player.points}
                                         change={(e) => handlePlayerChange('visit', index, 'points', e.target.value)}
-                                        clickplus={() => handleIncrement('visit', index, 'points', 1)}
-                                        clickminus={() => handleIncrement('visit', index, 'points', -1)}
+                                        clickplus={() => handleIncrement('visit', index, 'points', 2)}
+                                        clickminus={() => handleIncrement('visit', index, 'points', 3)}
                                     />
                                 </TableCell>
                                 <TableCell className="w-1/8">
@@ -262,7 +262,7 @@ export default function GameDetailsForm({ localTeam, visitTeam, gameId }) {
             <div className="mt-4">
                 <button
                     onClick={handleFinishGame}
-                    className="px-4 py-2 bg-red-500 rounded hover:bg-blue-600"
+                    className="px-4 py-2 bg-menu-bg-950 text-white rounded hover:bg-menu-bg-600"
                 >
                     Terminar Partido
                 </button>

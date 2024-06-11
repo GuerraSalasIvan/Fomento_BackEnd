@@ -4,6 +4,7 @@ import Link from '@mui/material/Link';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import MediumCard from '@/app/ui/components/cards/players/MediumCard';
 import Image from 'next/image';
+import AverageCard from '@/app/ui/components/cards/games/TeamAverageCard';
 
 const positionOrder = {
     1: 1, // Base
@@ -36,7 +37,7 @@ export default function Page({ teamId }) {
                     throw new Error(`Error fetching data: ${response.statusText}`);
                 }
                 const data = await response.json();
-                setTeamData(data.team || null);
+                setTeamData(data|| null);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -55,12 +56,12 @@ export default function Page({ teamId }) {
         return <div>Error: {error}</div>;
     }
 
-    if (!teamData) {
+    if (!teamData.team) {
         return <div>No team data available</div>;
     }
 
     // Ordenar los jugadores por posición
-    const sortedPlayers = teamData.players.sort((a, b) => {
+    const sortedPlayers = teamData.team.players.sort((a, b) => {
         return positionOrder[a.position] - positionOrder[b.position];
     });
 
@@ -77,8 +78,8 @@ export default function Page({ teamId }) {
     return (
         <div>
             <div className='flex items-center m-3 justify-between'>
-                <DarkTitle text={teamData.name} />
-                <Image src={teamData.imageURL} alt="alt" width={200} height={200} />
+                <DarkTitle text={teamData.team.name} />
+                <Image src={teamData.team.imageURL} alt="alt" width={200} height={200} />
             </div>
 
             <div>
@@ -94,6 +95,9 @@ export default function Page({ teamId }) {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div>
+                <AverageCard average={teamData.averageStats} text={'Promedios de equipo'}/>
             </div>
         </div>
     );

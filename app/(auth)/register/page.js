@@ -40,7 +40,6 @@ const Page = () => {
                 player_position: playerPosition,
                 setErrors,
             })
-            // router.push('/user')
         } finally {
             setIsSubmitting(false)
         }

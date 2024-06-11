@@ -4,6 +4,7 @@ import PlayersCard from '@/app/ui/components/cards/teams/PlayersCard';
 import BackButton from "@/app/ui/components/buttons/BackButton"
 
 
+
 export default function Page({params}) {
     const { teamId } = params;
 
@@ -18,6 +19,8 @@ export default function Page({params}) {
                     <div className='mt-4'>
                         <PlayersCard teamId={teamId}/>
                     </div>
+
+
             </Grid>
         </Grid>
     );

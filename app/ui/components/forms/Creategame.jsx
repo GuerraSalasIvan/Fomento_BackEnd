@@ -60,7 +60,7 @@ export default function GameCreate() {
             });
 
             reset();
-            router.push('/dashboard/games');
+            router.push('/dashboard/games/arbitrate');
         } catch (error) {
             console.error('Error submitting game:', error);
             setError('Error submitting game');
