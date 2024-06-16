@@ -12,7 +12,7 @@ export default function GameInput({value, change, clickplus, clickminus}) {
                 />
                     <div className="flex space-x-1 w-1/2">
                         <button className="bg-menu-bg-950 text-white px-2 py-1 rounded border" onClick={clickplus}>+1</button>
-                        <button className="bg-menu-bg-950 text-white px-2 py-1 rounded border" onClick={clickplus}>-1</button>
+                        <button className="bg-menu-bg-950 text-white px-2 py-1 rounded border" onClick={clickminus}>-1</button>
                 </div>
             </div>
         </div>

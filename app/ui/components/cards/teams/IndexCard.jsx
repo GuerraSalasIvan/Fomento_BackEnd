@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from '@mui/material/Link';
 import axios from '@/lib/axios';
+import MockImage from '@/public/assests/img/default_team.png';
 
 
 export default function Page() {
@@ -29,7 +30,7 @@ export default function Page() {
                         teamData.map((team) => (
                             <Link key={team.id} href={`/dashboard/teams/${team.id}`} className='no-underline hover:no-underline text-title-dark-700'>
                                 <div className='flex flex-col items-center pb-4 transition-transform transform hover:scale-105' style={{ padding: '10px', margin: '10px' }}>
-                                    <Image src={team.imageURL} alt={`${team.name} logo`} width={300} height={300} />
+                                    <Image src={team.imageURL || MockImage} alt={`${team.name} logo`} width={300} height={300} />
                                     <p className='text-title-dark-700'><strong>{team.name}</strong></p>
                                     <p className='text-title-dark-700'>{team.league_name}</p>
                                 </div>

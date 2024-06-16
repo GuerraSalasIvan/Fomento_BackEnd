@@ -6,6 +6,7 @@ import MediumCard from '@/app/ui/components/cards/players/MediumCard';
 import Image from 'next/image';
 import AverageCard from '@/app/ui/components/cards/games/TeamAverageCard';
 import axios from '@/lib/axios';
+import MockImage from '@/public/assests/img/default_team.png';
 
 const positionOrder = {
     1: 1, // Base
@@ -23,6 +24,7 @@ const positionNames = {
     3: 'Aleros',
     4: 'Ala-Pivots',
     5: 'Pivots',
+    6: 'Estadisticas de equipo'
 };
 
 export default function Page({ teamId }) {
@@ -80,7 +82,7 @@ export default function Page({ teamId }) {
         <div>
             <div className='flex items-center m-3 justify-between'>
                 <DarkTitle text={teamData.team.name} />
-                <Image src={teamData.team.imageURL} alt="alt" width={200} height={200} />
+                <Image src={teamData.team.imageURL || MockImage} alt="alt" width={200} height={200} />
             </div>
 
             <div>

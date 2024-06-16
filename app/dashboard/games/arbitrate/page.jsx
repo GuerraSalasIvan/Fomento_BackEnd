@@ -15,7 +15,7 @@ export default function page() {
         <Grid container spacing={1}>
             <Grid item xs={12} md={12}>
             <div className='flex justify-between items-center'>
-                <DarkTitle text = {'Crear encuentro'}/>
+                <DarkTitle text = {'Arbitrar partido'}/>
                 <BackButton url={`/dashboard/events`} />
             </div>
                     <div>

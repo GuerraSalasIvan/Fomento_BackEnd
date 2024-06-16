@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PlayerDetail from '@/app/ui/components/cards/players/GameDetail';
+import BackButton from "@/app/ui/components/buttons/BackButton"
 
 export default function GameDetails({ gameId }) {
     const [gameData, setGameData] = useState(null);
@@ -30,11 +31,9 @@ export default function GameDetails({ gameId }) {
 
     if (!gameData || !gameData.game) {
         return (
-            <div className="flex justify-between items-center min-h-screen">
+            <div className="flex justify-between  ">
                 <p>Este partido no tiene registro todavía</p>
-                <Link href={`/dashboard/games`} passHref>
-                    <a className="px-4 py-1 bg-menu-bg-500 text-white rounded-lg"> Volver </a>
-                </Link>
+                <BackButton url={`/dashboard/games`} />
             </div>
         );
     }

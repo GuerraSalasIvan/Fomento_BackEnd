@@ -13,7 +13,7 @@ export default function Page() {
             try {
                 const response = await axios.get("/player");
                 const data = response.data;
-                setPlayerData(data || []);
+                setplayerData(data || []);
             } catch (error) {
                 console.error("Error fetching game data: ", error);
                 setplayerData([]);
@@ -21,6 +21,7 @@ export default function Page() {
         }
         fetchplayerData();
     }, []);
+    
 
     return (
         <div className="container mx-auto p-4">

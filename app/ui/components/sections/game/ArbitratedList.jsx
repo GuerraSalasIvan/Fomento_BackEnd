@@ -72,7 +72,7 @@ export default function GamesList() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {filteredGames.map((game) => (
-                    <div key={game.id} className="bg-white shadow-md rounded p-4 mb-4">
+                    <div key={game.id} className="bg-white shadow-md rounded p-4 mb-4 transform transition-transform hover:scale-105 hover:bg-menu-bg-100">
                         <Link  href={`/dashboard/games/${game.id}`}>
                             <h2 className="text-xl text-menu-bg-700">
                                 <strong>{game.local_team.name}</strong> vs <strong>{game.visit_team.name}</strong>

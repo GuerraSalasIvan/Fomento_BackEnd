@@ -65,7 +65,7 @@ export default function GameDetailsForm({ localTeam, visitTeam, gameId }) {
         };
 
         try {
-            await axios.post('/api/gamePlayer', data);
+            await axios.post('/gamePlayer', data);
             alert('Partido terminado y datos guardados con éxito');
         } catch (error) {
             console.error('Error al guardar los datos del partido:', error);

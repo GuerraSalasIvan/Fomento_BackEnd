@@ -8,7 +8,8 @@ const positionMap = {
     2: 'Escolta',
     3: 'Alero',
     4: 'Ala-Pivot',
-    5: 'Pivot'
+    5: 'Pivot',
+    6: 'Equipo'
 };
 
 const PlayerCard = ({ player }) => {

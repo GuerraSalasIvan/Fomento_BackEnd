@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/auth';
 export default function ScoreBoard({ local, localscore, visit, visitscore, gameId }) {
     const [scoreHistory, setScoreHistory] = useState([]);
     const [activeQuarter, setActiveQuarter] = useState('');
-    const { user } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: '/dashboard'});
+    const { user } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: ''});
 
     const handleSaveScore = (quarter) => {
         let localQuarterScore = 0;
