@@ -4,14 +4,14 @@ import { format } from "date-fns";
 import { useAuth } from '@/hooks/auth';
 
 export default function UserGameCard() {
-    const { user } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: '/null'});
+    const { user } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: '/dashboard'});
     const [userTeamGames, setUserTeamGames] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function fetchUserTeamGames() {
             try {
-                const response = await fetch("https://proyectointegrado-production-0e79.up.railway.app/api/game");
+                const response = await fetch("http://127.0.0.1:8000/api/game");
                 const data = await response.json();
 
                 const userTeamId = user?.player?.teams?.[0]?.id;

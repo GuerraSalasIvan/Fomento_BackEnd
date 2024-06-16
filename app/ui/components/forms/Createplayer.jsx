@@ -18,12 +18,12 @@ const CreatePlayer = () => {
     useEffect(() => {
         const fetchCsrfToken = async () => {
             try {
-                const csrfResponse = await fetch('https://proyectointegrado-production-0e79.up.railway.app/sanctum/csrf-cookie', {
+                const csrfResponse = await fetch('http://127.0.0.1:8000/sanctum/csrf-cookie', {
                     credentials: 'include',
                 })
                 // console.log('CSRF cookie response:', csrfResponse)
 
-                const response = await fetch('https://proyectointegrado-production-0e79.up.railway.app/api/csrf-token', {
+                const response = await fetch('http://127.0.0.1:8000/api/csrf-token', {
                     credentials: 'include',
                 })
                 // console.log('CSRF token response:', response)
@@ -48,7 +48,7 @@ const CreatePlayer = () => {
         })
 
         try {
-            const response = await fetch('https://proyectointegrado-production-0e79.up.railway.app/api/player', {
+            const response = await fetch('http://127.0.0.1:8000/api/player', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

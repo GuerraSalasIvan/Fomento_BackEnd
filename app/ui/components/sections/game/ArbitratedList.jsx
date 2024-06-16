@@ -16,8 +16,8 @@ export default function GamesList() {
         const fetchData = async () => {
             try {
                 const [gamesResponse, leaguesResponse] = await Promise.all([
-                    axios.get('https://proyectointegrado-production-0e79.up.railway.app/api/arbitrated'),
-                    axios.get('https://proyectointegrado-production-0e79.up.railway.app/api/leagues')
+                    axios.get('http://127.0.0.1:8000/api/arbitrated'),
+                    axios.get('http://127.0.0.1:8000/api/leagues')
                 ]);
 
                 setGames(gamesResponse.data);

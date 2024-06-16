@@ -10,7 +10,7 @@ export default function Page() {
     useEffect(() => {
         async function fetchplayerData() {
             try {
-                const response = await fetch("https://proyectointegrado-production-0e79.up.railway.app/api/player");
+                const response = await fetch("http://127.0.0.1:8000/api/player");
                 const data = await response.json();
                 setplayerData(data || []);
             } catch (error) {

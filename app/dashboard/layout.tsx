@@ -88,11 +88,12 @@ const defaultTheme = createTheme();
 
 export default function Dashboard({ children }) {
     const [open, setOpen] = React.useState(false);
+    const [isUpdating, setIsUpdating] = React.useState(false);
     const toggleDrawer = () => {
         setOpen(!open);
     };
 
-    const { user, logout } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '/dashboard' });
+    const { user, logout } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '' });
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -121,14 +122,17 @@ export default function Dashboard({ children }) {
                             <Image src={logo} alt="alt" width={156} height={50} className="py-1.5" />
                         </Typography>
                         <div className="mr-4 flex items-center">
-                            <p>Hola,
-                                {user && (
-                                    <Link href={`/dashboard/players/${user.player.id}`} className='focus:outline-none hover:no-underline text-white hover:text-menu-bg-200 text-base'>
-                                        <strong> {user.name}</strong>
-                                    </Link>
-                                )}
-                            </p>
-                        </div>
+    {user && user.player && user.player.id ? (
+        <p>
+            Hola,
+            <Link href={`/dashboard/players/${user.player.id}`} className='focus:outline-none hover:no-underline text-white hover:text-menu-bg-200 text-base'>
+                <strong> {user.name}</strong>
+            </Link>
+        </p>
+    ) : (
+        <p>Cargando...</p>
+    )}
+</div>
                         <button
                             onClick={logout}
                             className="ml-4 text-sm text-gray-700 underline"
@@ -191,3 +195,9 @@ export default function Dashboard({ children }) {
         </ThemeProvider>
     );
 }
+
+
+
+
+
+

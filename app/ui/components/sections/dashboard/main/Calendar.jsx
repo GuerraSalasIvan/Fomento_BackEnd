@@ -11,7 +11,7 @@ const CalendarComponent = () => {
     useEffect(() => {
         const fetchGames = async () => {
             try {
-                const response = await fetch('https://proyectointegrado-production-0e79.up.railway.app/api/game');
+                const response = await fetch('http://127.0.0.1:8000/api/game');
                 const data = await response.json();
                 setGames(data);
             } catch (error) {

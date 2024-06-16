@@ -26,7 +26,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         try {
             const response = await axios.post('/register', props);
             const { access_token, user } = response.data;
-            localStorage.setItem('token', access_token); // Guardar el token en localStorage
+            localStorage.setItem('token', access_token);
             mutate(user);
         } catch (error) {
             if (error.response.status !== 422) throw error;
@@ -41,7 +41,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
         try {
             const response = await axios.post('/login', props);
             const { accessToken, user } = response.data;
-            localStorage.setItem('token', accessToken); // Guardar el token en localStorage
+            localStorage.setItem('token', accessToken);
             mutate(user);
         } catch (error) {
             if (error.response.status !== 422) throw error;
@@ -51,8 +51,8 @@ export const useAuth = ({ middleware, redirectIfAuthenticated } = {}) => {
 
     const logout = async () => {
         try {
-            await axios.post('/logout');
-            localStorage.removeItem('token'); // Eliminar el token de localStorage
+            await axios.get('/logout');
+            localStorage.removeItem('token');
             mutate(null);
             router.push('/login');
         } catch (error) {

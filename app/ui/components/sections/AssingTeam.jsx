@@ -9,13 +9,13 @@ export default function AssingTeam() {
     const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState('');
     const [loading, setLoading] = useState(false);
-    const { user, assignTeam } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: '/null'});
+    const { user, assignTeam } = useAuth({ middleware: 'auth' , redirectIfNotAuthenticated: '/dashboard'});
     const router = useRouter();
 
     useEffect(() => {
         const fetchTeams = async () => {
             try {
-                const response = await axios.get('https://proyectointegrado-production-0e79.up.railway.app/api/currentteams');
+                const response = await axios.get('http://127.0.0.1:8000/api/currentteams');
                 setTeams(response.data.teams);
             } catch (error) {
                 console.error('Error fetching teams:', error);
@@ -50,7 +50,7 @@ export default function AssingTeam() {
     console.log('aqui', teams);
 
     if (!user) {
-        return <p className="text-red-500">No logueado</p>;
+        return <p className="text-red-500">Cargando...</p>;
     }
 
     if (user.player.teams && user.player.teams.length > 0) {

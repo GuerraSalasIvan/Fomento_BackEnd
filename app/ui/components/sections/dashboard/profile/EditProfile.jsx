@@ -1,7 +1,6 @@
-'use client'
+'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/auth';
 import Input from '@/components/Input';
 import Label from '@/components/Label';
@@ -11,7 +10,6 @@ import unknown from '@/public/assests/img/default_avatar.jpg';
 import Image from 'next/image';
 
 const UpdateProfile = () => {
-    const router = useRouter();
     const { user, updateProfile } = useAuth({
         middleware: 'auth',
         redirectIfNotAuthenticated: '/login',
@@ -56,6 +54,7 @@ const UpdateProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setMessage(''); // Clear any previous messages
 
         try {
             await updateProfile({
@@ -63,6 +62,7 @@ const UpdateProfile = () => {
                 setErrors,
                 setMessage,
             });
+            setMessage('Perfil actualizado exitosamente');
         } finally {
             setIsSubmitting(false);
         }
