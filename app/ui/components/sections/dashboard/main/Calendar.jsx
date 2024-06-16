@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Whisper, Popover } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
+import axios from '@/lib/axios';
 
 const CalendarComponent = () => {
     const [games, setGames] = useState([]);
@@ -11,9 +12,8 @@ const CalendarComponent = () => {
     useEffect(() => {
         const fetchGames = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/game');
-                const data = await response.json();
-                setGames(data);
+                const response = await axios.get('/api/game');
+                setGames(response.data || []);
             } catch (error) {
                 console.error('Error fetching games:', error);
             }

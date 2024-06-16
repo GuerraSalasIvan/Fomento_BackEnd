@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '@/lib/axios';
 import Arbitrategame from '@/app/ui/components/forms/Arbitrategame';
 
 export default function ArbitrateGamePage({ params }) {
@@ -13,7 +13,7 @@ export default function ArbitrateGamePage({ params }) {
     useEffect(() => {
         const fetchGameData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/game/${gameId}`);
+                const response = await axios.get(`/game/${gameId}`);
                 setGameData(response.data);
             } catch (error) {
                 setError('Error fetching game data');

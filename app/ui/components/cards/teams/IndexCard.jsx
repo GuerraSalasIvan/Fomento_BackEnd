@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from '@mui/material/Link';
+import axios from '@/lib/axios';
 
 
 export default function Page() {
@@ -11,9 +12,8 @@ export default function Page() {
     useEffect(() => {
         async function fetchTeamData() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/api/team");
-                const data = await response.json();
-
+                const response = await axios.get("/team");
+                const data = response.data;
                 setTeamData(data.teams || []);
             } catch (error) {
                 console.error("Error fetching team data: ", error);

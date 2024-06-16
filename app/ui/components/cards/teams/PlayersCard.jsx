@@ -5,6 +5,7 @@ import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import MediumCard from '@/app/ui/components/cards/players/MediumCard';
 import Image from 'next/image';
 import AverageCard from '@/app/ui/components/cards/games/TeamAverageCard';
+import axios from '@/lib/axios';
 
 const positionOrder = {
     1: 1, // Base
@@ -32,12 +33,11 @@ export default function Page({ teamId }) {
     useEffect(() => {
         async function fetchTeamData() {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/team/${teamId}`);
-                if (!response.ok) {
-                    throw new Error(`Error fetching data: ${response.statusText}`);
+                const response = await axios.get(`/team/${teamId}`);
+                if (!response.data.team) {
+                    throw new Error(`No team data found for team ID ${teamId}`);
                 }
-                const data = await response.json();
-                setTeamData(data|| null);
+                setTeamData(response.data);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -56,7 +56,7 @@ export default function Page({ teamId }) {
         return <div>Error: {error}</div>;
     }
 
-    if (!teamData.team) {
+    if (!teamData || !teamData.team) {
         return <div>No team data available</div>;
     }
 
@@ -74,6 +74,7 @@ export default function Page({ teamId }) {
         acc[positionName].push(player);
         return acc;
     }, {});
+
 
     return (
         <div>

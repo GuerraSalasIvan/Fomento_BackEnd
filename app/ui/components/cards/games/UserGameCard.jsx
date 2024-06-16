@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { format } from "date-fns";
 import { useAuth } from '@/hooks/auth';
+import axios from '@/lib/axios';
 
 export default function UserGameCard() {
     const { user } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: '/dashboard'});
@@ -11,8 +12,8 @@ export default function UserGameCard() {
     useEffect(() => {
         async function fetchUserTeamGames() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/api/game");
-                const data = await response.json();
+                const response = await axios.get("/game");
+                const data = response.data;
 
                 const userTeamId = user?.player?.teams?.[0]?.id;
 

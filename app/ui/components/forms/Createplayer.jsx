@@ -6,78 +6,68 @@ import Button from '@/components/Button'
 import Input from '@/components/Input'
 import InputError from '@/components/InputError'
 import Label from '@/components/Label'
+import axios from '@/lib/axios';
 
 const CreatePlayer = () => {
-    const router = useRouter()
-    const [fullName, setFullName] = useState('')
-    const [birthdate, setBirthdate] = useState('')
-    const [position, setPosition] = useState('')
-    const [errors, setErrors] = useState([])
-    const [csrfToken, setCsrfToken] = useState('')
+    const router = useRouter();
+    const [fullName, setFullName] = useState('');
+    const [birthdate, setBirthdate] = useState('');
+    const [position, setPosition] = useState('');
+    const [errors, setErrors] = useState([]);
+    const [csrfToken, setCsrfToken] = useState('');
 
     useEffect(() => {
         const fetchCsrfToken = async () => {
             try {
-                const csrfResponse = await fetch('http://127.0.0.1:8000/sanctum/csrf-cookie', {
-                    credentials: 'include',
-                })
-                // console.log('CSRF cookie response:', csrfResponse)
+                await axios.get('/sanctum/csrf-cookie', {
+                    withCredentials: true,
+                });
 
-                const response = await fetch('http://127.0.0.1:8000/api/csrf-token', {
-                    credentials: 'include',
-                })
-                // console.log('CSRF token response:', response)
+                const response = await axios.get('/api/csrf-token', {
+                    withCredentials: true,
+                });
 
-                const data = await response.json()
-                // console.log('CSRF token data:', data)
-                setCsrfToken(data.csrfToken)
+                setCsrfToken(response.data.csrfToken);
             } catch (error) {
-                console.error('Failed to fetch CSRF token:', error)
+                console.error('Failed to fetch CSRF token:', error);
             }
-        }
+        };
 
-        fetchCsrfToken()
-    }, [])
+        fetchCsrfToken();
+    }, []);
 
     const submitForm = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
         console.log('Submitting form with data:', {
             full_name: fullName,
             birthdate,
             position,
-        })
+        });
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/player', {
-                method: 'POST',
+            const response = await axios.post('/api/player', {
+                full_name: fullName,
+                birthdate,
+                position,
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': csrfToken,
                 },
-                body: JSON.stringify({
-                    full_name: fullName,
-                    birthdate,
-                    position,
-                }),
-                credentials: 'include',
-            })
+                withCredentials: true,
+            });
 
-            if (!response.ok) {
-                const data = await response.json()
-
-                setErrors(data.errors)
-                return
+            if (!response.data.success) {
+                setErrors(response.data.errors || []);
+                return;
             }
 
-            const responseData = await response.json()
-
-
-            router.push('/dashboard')
+            router.push('/dashboard');
         } catch (error) {
-            console.error('An unexpected error happened:', error)
-            setErrors(['An unexpected error happened.'])
+            console.error('An unexpected error happened:', error);
+            setErrors(['An unexpected error happened.']);
         }
-    }
+    };
 
     return (
 

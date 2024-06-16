@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '@/lib/axios';
 import { useForm } from 'react-hook-form';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -25,9 +25,9 @@ export default function GameCreate() {
         const fetchData = async () => {
             try {
                 const [teamsRes, leaguesRes, locationsRes] = await Promise.all([
-                    axios.get('http://127.0.0.1:8000/api/team'),
-                    axios.get('http://127.0.0.1:8000/api/leagues'),
-                    axios.get('http://127.0.0.1:8000/api/ubications')
+                    axios.get('/team'),
+                    axios.get('/leagues'),
+                    axios.get('/ubications')
                 ]);
 
                 setTeams(Array.isArray(teamsRes.data.teams) ? teamsRes.data.teams : []);
@@ -53,7 +53,7 @@ export default function GameCreate() {
             formData.append('league_id', data.league_id);
             formData.append('ubication_id', data.ubication_id);
 
-            const response = await axios.post('http://127.0.0.1:8000/api/game', formData, {
+            const response = await axios.post('/game', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

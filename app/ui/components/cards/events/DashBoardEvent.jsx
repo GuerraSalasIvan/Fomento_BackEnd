@@ -1,21 +1,21 @@
 import { format } from "date-fns";
 import React, { useState, useEffect } from 'react';
+import axios from '@/lib/axios';
 
 export default function DashBoardEvent(){
     const [eventData, setEventData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/api/game");
-                const data = await response.json();
-                setEventData(data);
-                setIsLoading(false); // Una vez que se cargan los datos, actualiza el estado de isLoading
+                const response = await axios.get('/game');
+                setEventData(response.data);
+                setIsLoading(false);
             } catch (error) {
                 console.error("Error fetching data: ", error);
                 setEventData([]);
-                setIsLoading(false); // En caso de error, también actualiza el estado de isLoading
+                setIsLoading(false);
             }
         }
         fetchData();

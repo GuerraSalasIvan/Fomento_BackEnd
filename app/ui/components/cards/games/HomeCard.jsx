@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from '@/lib/axios';
 
 export default function HomeCard({ gameData }) {
     const [mvpName, setMvpName] = useState('Cargando...');
@@ -11,8 +12,8 @@ export default function HomeCard({ gameData }) {
             }
 
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/player/${mvpId}`);
-                const data = await response.json();
+                const response = await axios.get(`/player/${mvpId}`);
+                const data = response.data;
                 setMvpName(data.player.full_name);
             } catch (error) {
                 console.error('Error fetching player data:', error);

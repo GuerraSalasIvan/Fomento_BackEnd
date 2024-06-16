@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '@/lib/axios';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
@@ -16,8 +16,8 @@ export default function GamesList() {
         const fetchData = async () => {
             try {
                 const [gamesResponse, leaguesResponse] = await Promise.all([
-                    axios.get('http://127.0.0.1:8000/api/arbitrated'),
-                    axios.get('http://127.0.0.1:8000/api/leagues')
+                    axios.get('/arbitrated'),
+                    axios.get('/leagues')
                 ]);
 
                 setGames(gamesResponse.data);

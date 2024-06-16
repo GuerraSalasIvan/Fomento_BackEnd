@@ -9,6 +9,8 @@ import PlayerGames from '@/app/ui/components/sections/dashboard/player/PlayerGam
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import unknown from '@/public/assests/img/default_avatar.jpg';
 import BackButton from "@/app/ui/components/buttons/BackButton"
+import axios from '@/lib/axios';
+
 
 export default function Page({ params }) {
     const { playerId } = params;
@@ -18,9 +20,8 @@ export default function Page({ params }) {
     useEffect(() => {
         async function fetchPlayerData() {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/api/player/${playerId}`);
-                const data = await response.json();
-                setPlayerData(data || {});
+                const response = await axios.get(`/player/${playerId}`);
+                setPlayerData(response.data || {});
             } catch (error) {
                 console.error("Error fetching player data: ", error);
                 setPlayerData({});

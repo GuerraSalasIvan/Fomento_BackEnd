@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from '@mui/material/Link';
 import PlayerCard from '@/app/ui/components/cards/players/MediumCard';
+import axios from '@/lib/axios';
 
 export default function Page() {
     const [playerData, setplayerData] = useState([]);
@@ -10,9 +11,9 @@ export default function Page() {
     useEffect(() => {
         async function fetchplayerData() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/api/player");
-                const data = await response.json();
-                setplayerData(data || []);
+                const response = await axios.get("/player");
+                const data = response.data;
+                setPlayerData(data || []);
             } catch (error) {
                 console.error("Error fetching game data: ", error);
                 setplayerData([]);

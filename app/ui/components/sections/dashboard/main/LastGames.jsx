@@ -2,6 +2,7 @@ import React from 'react';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import HomeCard from '@/app/ui/components/cards/games/HomeCard';
 import { format } from "date-fns";
+import axios from '@/lib/axios';
 import Link from 'next/link';
 
 export default function LastGames() {
@@ -10,10 +11,8 @@ export default function LastGames() {
     React.useEffect(() => {
         async function fetchGameData() {
             try {
-                const response = await fetch("http://127.0.0.1:8000/api/arbitrated");
-                const data = await response.json();
-
-                setGameData(data || []);
+                const response = await axios.get("/arbitrated");
+                setGameData(response.data || []);
             } catch (error) {
                 console.error("Error fetching game data: ", error);
                 setGameData([]);

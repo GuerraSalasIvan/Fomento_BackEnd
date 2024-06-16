@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/auth';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import axios from '@/lib/axios';
 import fondo from '@/public/assests/img/fondo_login.jpeg';
 import Image from 'next/image';
 
@@ -15,7 +15,7 @@ export default function AssingTeam() {
     useEffect(() => {
         const fetchTeams = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/currentteams');
+                const response = await axios.get('/currentteams');
                 setTeams(response.data.teams);
             } catch (error) {
                 console.error('Error fetching teams:', error);
