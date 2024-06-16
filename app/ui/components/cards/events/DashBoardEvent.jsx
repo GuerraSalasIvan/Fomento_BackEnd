@@ -9,7 +9,7 @@ export default function DashBoardEvent(){
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('/game');
+                const response = await axios.get('/calendar');
                 setEventData(response.data);
                 setIsLoading(false);
             } catch (error) {
