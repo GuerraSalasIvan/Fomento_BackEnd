@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PlayerDetail from '@/app/ui/components/cards/players/GameDetail';
 import BackButton from "@/app/ui/components/buttons/BackButton"
+import axios from '@/lib/axios';
 
 export default function GameDetails({ gameId }) {
     const [gameData, setGameData] = useState(null);

@@ -76,7 +76,7 @@ export default function AssingTeam() {
                         {teams.map((team) => (
                             <div
                                 key={team.id}
-                                className={`card p-4 border rounded-lg justify-center cursor-pointer bg-menu-bg-50 transition-transform transform ${
+                                className={`card p-4 border rounded-lg justify-center cursor-pointer bg-menu-bg-50 hover:bg-menu-bg-100 transition-transform transform ${
                                     selectedTeam && selectedTeam.id === team.id
                                         ? 'border-menu-bg-700 scale-105 shadow-lg'
                                         : 'border-gray-300'
@@ -95,7 +95,7 @@ export default function AssingTeam() {
                     </div>
                     <button
                         type="submit"
-                        className="mt-4 px-4 py-2 bg-menu-bg-50 rounded-lg border disabled:opacity-50"
+                        className="mt-4 px-4 py-2 bg-menu-bg-50 rounded-lg border disabled:opacity-50 hover:bg-menu-bg-100"
                         disabled={loading}
                     >
                         {loading ? 'Cargando...' : 'Asignar Equipo'}

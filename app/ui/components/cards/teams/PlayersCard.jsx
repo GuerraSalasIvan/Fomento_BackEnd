@@ -14,7 +14,7 @@ const positionOrder = {
     3: 3, // Alero
     4: 4, // Ala-Pívot
     5: 5, // Pívot
-    6: 0,
+    6: 0, // Cuerpo técnico
 };
 
 const positionNames = {
@@ -62,12 +62,10 @@ export default function Page({ teamId }) {
         return <div>No team data available</div>;
     }
 
-    // Ordenar los jugadores por posición
     const sortedPlayers = teamData.team.players.sort((a, b) => {
         return positionOrder[a.position] - positionOrder[b.position];
     });
 
-    // Agrupar jugadores por posición y convertir códigos a nombres
     const groupedPlayers = sortedPlayers.reduce((acc, player) => {
         const positionName = positionNames[player.position];
         if (!acc[positionName]) {
@@ -77,6 +75,7 @@ export default function Page({ teamId }) {
         return acc;
     }, {});
 
+    const hasPlayers = Object.keys(groupedPlayers).length > 0;
 
     return (
         <div>
@@ -86,21 +85,25 @@ export default function Page({ teamId }) {
             </div>
 
             <div>
-                {Object.entries(groupedPlayers).map(([position, players]) => (
-                    <div key={position}>
-                        <h3 className="m-3 font-bold text-xl text-menu-bg-800">{position}</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {players.map(player => (
-                                <div key={player.id}>
-                                    <MediumCard player={player} />
-                                </div>
-                            ))}
+                {hasPlayers ? (
+                    Object.entries(groupedPlayers).map(([position, players]) => (
+                        <div key={position}>
+                            <h3 className="m-3 font-bold text-xl text-menu-bg-800">{position}</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {players.map(player => (
+                                    <div key={player.id}>
+                                        <MediumCard player={player} />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <p className="m-3 text-lg text-center text-red-500">Este equipo no tiene jugadores todavía.</p>
+                )}
             </div>
             <div>
-                <AverageCard average={teamData.averageStats} text={'Promedios de equipo'}/>
+                <AverageCard average={teamData.averageStats} text={'Promedios de equipo'} />
             </div>
         </div>
     );
