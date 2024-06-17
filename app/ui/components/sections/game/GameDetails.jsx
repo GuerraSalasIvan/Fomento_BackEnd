@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PlayerDetail from '@/app/ui/components/cards/players/GameDetail';
-import BackButton from "@/app/ui/components/buttons/BackButton"
+import BackButton from "@/app/ui/components/buttons/BackButton";
 import axios from '@/lib/axios';
 
 export default function GameDetails({ gameId }) {
@@ -32,9 +32,11 @@ export default function GameDetails({ gameId }) {
 
     if (!gameData || !gameData.game) {
         return (
-            <div className="flex justify-between  ">
-                <p>Este partido no tiene registro todavía</p>
-                <BackButton url={`/dashboard/games`} />
+            <div className="container mx-auto p-4">
+                <div className="flex justify-between mb-4">
+                    <p>Este partido no tiene registro todavía</p>
+                    <BackButton url={`/dashboard/games`} />
+                </div>
             </div>
         );
     }
@@ -54,25 +56,54 @@ export default function GameDetails({ gameId }) {
                 </div>
             </div>
 
-
             <div className="flex flex-wrap -mx-2">
                 <div className="w-full lg:w-1/2 p-2">
-                    <div className="bg-white border p-4 rounded-lg shadow-md">
+                    <div className="bg-white border p-4 rounded-lg shadow-md overflow-x-auto">
                         <h3 className="text-lg font-semibold mb-4 text-menu-bg-800">{gameData.game.local_team.name}</h3>
-                        <PlayerDetail isHeader={true} />
-                        {gameData.localTeamPlayers.map((player, index) => (
-                            <PlayerDetail key={player.id} player={player} team={gameData.game.local_team} index={index} />
-                        ))}
+                        <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="bg-gray-50">
+                                <tr className="font-bold">
+                                    <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nº</th>
+                                    <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider col-span-5">Nombre</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Pts</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Reb</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Ast</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Rob</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Tap</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">F.P</th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200">
+                                {gameData.localTeamPlayers.map((player, index) => (
+                                    <PlayerDetail key={player.id} player={player} team={gameData.game.local_team} index={index} />
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
                 <div className="w-full md:w-1/2 p-2">
-                    <div className="bg-white border p-4 rounded-lg shadow-md">
-                        <h3 className="text-lg font-semibold mb-4 text-menu-bg-800"> {gameData.game.visit_team.name}</h3>
-                        <PlayerDetail isHeader={true} />
-                        {gameData.visitTeamPlayers.map((player, index) => (
-                            <PlayerDetail key={player.id} player={player} team={gameData.game.visit_team} index={index} />
-                        ))}
+                    <div className="bg-white p-4 border rounded-lg shadow-md overflow-x-auto">
+                        <h3 className="text-lg font-semibold mb-4 text-menu-bg-800">{gameData.game.visit_team.name}</h3>
+                        <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="bg-gray-50">
+                                <tr className="font-bold">
+                                    <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nº</th>
+                                    <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider col-span-5">Nombre</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Pts</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Reb</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Ast</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Rob</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Tap</th>
+                                    <th className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">F.P</th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200">
+                                {gameData.visitTeamPlayers.map((player, index) => (
+                                    <PlayerDetail key={player.id} player={player} team={gameData.game.visit_team} index={index} />
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

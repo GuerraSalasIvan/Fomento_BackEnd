@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/auth';
 export default function ScoreBoard({ local, localscore, visit, visitscore, gameId }) {
     const [scoreHistory, setScoreHistory] = useState([]);
     const [activeQuarter, setActiveQuarter] = useState('');
-    const { user } = useAuth({ middleware: 'guest' , redirectIfAuthenticated: ''});
+    const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '' });
 
     const handleSaveScore = (quarter) => {
         let localQuarterScore = 0;
@@ -74,60 +74,73 @@ export default function ScoreBoard({ local, localscore, visit, visitscore, gameI
     };
 
     return (
-        <div className='bg-menu-bg-950 text-white p-3 rounded m-3'>
+        <div className='bg-menu-bg-950 text-white p-3 rounded m-3 overflow-x-auto'>
             <h1 className='text-3xl font-extrabold text-center mb-5'>Marcador</h1>
-            <div className='flex justify-around text-2xl font-bold'>
-                <div>{local}</div>
-                <div className='text-3xl'>{localscore}</div>
-                <div> - </div>
-                <div className='text-3xl'>{visitscore}</div>
-                <div>{visit}</div>
+            <div className='flex flex-col sm:flex-row sm:justify-around items-center text-center sm:text-2xl font-bold'>
+                <div className='mb-2 sm:mb-0'>
+                    {local}
+                </div>
+                <div className='text-3xl mb-2 sm:mb-0'>
+                    {localscore}
+                </div>
+                <div className='text-3xl mb-2 sm:mb-0'>
+                    -
+                </div>
+                <div className='text-3xl mb-2 sm:mb-0'>
+                    {visitscore}
+                </div>
+                <div>
+                    {visit}
+                </div>
             </div>
 
-            <table className="mt-5 w-full">
-                <thead>
-                    <tr>
-                        <th className="px-4 py-2"></th>
-                        <th className="border px-4 py-2">1º Cuarto</th>
-                        <th className="border px-4 py-2">2º Cuarto</th>
-                        <th className="border px-4 py-2">3º Cuarto</th>
-                        <th className="border px-4 py-2">4º Cuarto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td className="border px-4 py-2">{local}</td>
-                        {['1º cuarto', '2º cuarto', '3º cuarto', '4º cuarto'].map((quarter, index) => (
-                            <td key={index} className="border px-4 py-2">
-                                {scoreHistory.find(score => score.quarter === quarter)?.localScore || ''}
-                            </td>
-                        ))}
-                    </tr>
-                    <tr>
-                        <td className="border px-4 py-2">{visit}</td>
-                        {['1º cuarto', '2º cuarto', '3º cuarto', '4º cuarto'].map((quarter, index) => (
-                            <td key={index} className="border px-4 py-2">
-                                {scoreHistory.find(score => score.quarter === quarter)?.visitScore || ''}
-                            </td>
-                        ))}
-                    </tr>
-                </tbody>
-            </table>
 
-            <div className="mt-5 flex justify-around">
-                <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={() => handleSaveScore('1º cuarto')} disabled={activeQuarter !== ''}>
+            <div className="overflow-x-auto mt-5">
+                <table className="w-full">
+                    <thead>
+                        <tr>
+                            <th className="px-4 py-2"></th>
+                            <th className="border px-4 py-2">1º Cuarto</th>
+                            <th className="border px-4 py-2">2º Cuarto</th>
+                            <th className="border px-4 py-2">3º Cuarto</th>
+                            <th className="border px-4 py-2">4º Cuarto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td className="border px-4 py-2">{local}</td>
+                            {['1º cuarto', '2º cuarto', '3º cuarto', '4º cuarto'].map((quarter, index) => (
+                                <td key={index} className="border px-4 py-2">
+                                    {scoreHistory.find(score => score.quarter === quarter)?.localScore || ''}
+                                </td>
+                            ))}
+                        </tr>
+                        <tr>
+                            <td className="border px-4 py-2">{visit}</td>
+                            {['1º cuarto', '2º cuarto', '3º cuarto', '4º cuarto'].map((quarter, index) => (
+                                <td key={index} className="border px-4 py-2">
+                                    {scoreHistory.find(score => score.quarter === quarter)?.visitScore || ''}
+                                </td>
+                            ))}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div className="mt-5 flex flex-wrap justify-around">
+                <button className={`w-full lg:w-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={() => handleSaveScore('1º cuarto')} disabled={activeQuarter !== ''}>
                     1º Cuarto
                 </button>
-                <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '2º cuarto' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={() => handleSaveScore('2º cuarto')} disabled={activeQuarter !== '2º cuarto'}>
+                <button className={`w-full lg:w-auto mt-2 lg:mt-0 lg:ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '2º cuarto' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={() => handleSaveScore('2º cuarto')} disabled={activeQuarter !== '2º cuarto'}>
                     2º Cuarto
                 </button>
-                <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '3º cuarto' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={() => handleSaveScore('3º cuarto')} disabled={activeQuarter !== '3º cuarto'}>
+                <button className={`w-full lg:w-auto mt-2 lg:mt-0 lg:ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '3º cuarto' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={() => handleSaveScore('3º cuarto')} disabled={activeQuarter !== '3º cuarto'}>
                     3º Cuarto
                 </button>
-                <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '4º cuarto' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={() => handleSaveScore('4º cuarto')} disabled={activeQuarter !== '4º cuarto'}>
+                <button className={`w-full lg:w-auto mt-2 lg:mt-0 lg:ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '4º cuarto' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={() => handleSaveScore('4º cuarto')} disabled={activeQuarter !== '4º cuarto'}>
                     4º Cuarto
                 </button>
-                <button className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '4º cuarto' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={handleFinish} disabled={activeQuarter !== '4º cuarto'}>
+                <button className={`w-full lg:w-auto mt-2 lg:mt-0 lg:ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${activeQuarter !== '4º cuarto' ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={handleFinish} disabled={activeQuarter !== '4º cuarto'}>
                     Fin
                 </button>
             </div>

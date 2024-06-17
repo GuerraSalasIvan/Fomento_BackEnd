@@ -21,12 +21,12 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [shouldRemember, setShouldRemember] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState({})
     const [status, setStatus] = useState(null)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     useEffect(() => {
-        if (router.reset?.length > 0 && errors.length === 0) {
+        if (router.reset?.length > 0 && Object.keys(errors).length === 0) {
             setStatus(atob(router.reset))
         } else {
             setStatus(null)
@@ -45,6 +45,8 @@ const Login = () => {
                 setErrors,
                 setStatus,
             })
+        } catch (error) {
+            setErrors({ general: 'Email o contraseña incorrectos' })
         } finally {
             setIsSubmitting(false)
         }
@@ -85,8 +87,15 @@ const Login = () => {
                         autoComplete="current-password"
                     />
 
-                    <InputError messages={errors.password} className="mt-2" />
+                    <InputError messages={errors.password} className="mt-2 text-red-500" />
                 </div>
+
+
+                {errors.general && (
+                    <div className="mt-4 text-red-500">
+                        {errors.general}
+                    </div>
+                )}
 
                 <div className="flex items-center justify-between mt-4">
                     <Link

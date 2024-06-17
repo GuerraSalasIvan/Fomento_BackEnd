@@ -6,7 +6,7 @@ import fondo from '@/public/assests/img/fondo_login.jpeg';
 import Logo from '@/public/assests/img/logo_mz_rosa.png';
 
 export const metadata = {
-    title: 'Laravel',
+    title: 'Fomento',
 }
 
 const Layout = ({ children }) => {

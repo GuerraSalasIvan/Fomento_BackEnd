@@ -52,15 +52,16 @@ export default function GamesList() {
     return (
         <div className="container mx-auto p-4">
 
-            <div className="mb-6 flex">
-                <label htmlFor="league" className="block text-sm font-semibold text-menu-bg-700 w-2/12 p-2">
+            <div className="mb-6 flex flex-col lg:flex-row items-center">
+                <label htmlFor="league" className="block text-sm font-semibold text-menu-bg-700 lg:w-2/12 p-2">
                     Selector de ligas
                 </label>
                 <select
                     id="league"
                     value={selectedLeague}
                     onChange={handleLeagueChange}
-                    className="mt-1 block w-full rounded-md border border-menu-bg-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    className="mt-1 block w-full lg:w-10/12 rounded-md border border-menu-bg-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                >
                     <option value="">Todas las ligas</option>
                     {leagues.map((league) => (
                         <option key={league.id} value={league.id}>
@@ -69,6 +70,7 @@ export default function GamesList() {
                     ))}
                 </select>
             </div>
+
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {filteredGames.map((game) => (
