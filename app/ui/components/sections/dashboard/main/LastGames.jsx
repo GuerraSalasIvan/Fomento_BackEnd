@@ -1,3 +1,4 @@
+// LastGames Component
 import React from 'react';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import HomeCard from '@/app/ui/components/cards/games/HomeCard';
@@ -24,7 +25,7 @@ export default function LastGames() {
     return (
         <div>
             <DarkTitle text={'Últimos partidos'}/>
-            <div className="flex justify-around items-center p-2 text-yellow-500 border border-yellow-500 font-bold rounded bg-primary-50">
+            <div className="hidden sm:flex justify-around items-center p-2 text-yellow-500 border border-yellow-500 font-bold rounded bg-primary-50">
                 <div className="flex-1 text-center">Equipo Local</div>
                 <div className="flex-1 text-center">Resultado</div>
                 <div className="flex-1 text-center">Equipo Visitante</div>

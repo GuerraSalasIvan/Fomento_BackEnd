@@ -1,3 +1,4 @@
+// HomeCard Component
 import React, { useState, useEffect } from 'react';
 import axios from '@/lib/axios';
 
@@ -36,7 +37,7 @@ export default function HomeCard({ gameData }) {
                            gameData.game_details.visit_fourth_cuarter;
 
     return (
-        <div className="border flex justify-around items-center p-2 rounded border-primary-500 text-title-dark-700">
+        <div className="border flex flex-col sm:flex-row justify-around items-center p-2 rounded border-primary-500 text-title-dark-700">
             <div className="flex-1 text-center font-bold">{gameData.local_team.name}</div>
             <div className="flex-1 text-center">{localTeamScore} - {visitTeamScore}</div>
             <div className="flex-1 text-center font-bold">{gameData.visit_team.name}</div>

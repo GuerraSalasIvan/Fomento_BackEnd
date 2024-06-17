@@ -79,9 +79,11 @@ export default function Page({ teamId }) {
 
     return (
         <div>
-            <div className='flex items-center m-3 justify-between'>
+            <div className='flex flex-col sm:flex-row items-center m-3 justify-between'>
                 <DarkTitle text={teamData.team.name} />
-                <Image src={teamData.team.imageURL || MockImage} alt="alt" width={200} height={200} />
+                <div className="mt-3 sm:mt-0">
+                    <Image src={teamData.team.imageURL || MockImage} alt="alt" width={200} height={200} />
+                </div>
             </div>
 
             <div>

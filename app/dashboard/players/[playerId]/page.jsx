@@ -45,12 +45,26 @@ export default function Page({ params }) {
 
     return (
         <>
-        <div className='flex justify-between items-center'>
-            <div className='my-4 mx-1 flex items-center'>
-                <Image src={playerData.player.imageURL || unknown} alt="alt" width={70} height={70} className="h-28 w-28 object-cover rounded-full"/>
-                <DarkTitle text={playerData.player.full_name} />
+            <div className="sm:hidden ml-auto">
+                <BackButton url={`/dashboard/teams`} />
             </div>
-            <BackButton url={`/dashboard/teams`} />
+        <div className='flex justify-between items-center'>
+            <div className=' flex flex-col sm:flex-row my-4 mx-1 items-center justify-between'>
+                <Image
+                    src={playerData.player.imageURL || unknown}
+                    alt="alt"
+                    width={70}
+                    height={70}
+                    className="h-28 w-28 object-cover rounded-full"
+                />
+                <div className="ml-2">
+                    <DarkTitle text={playerData.player.full_name} />
+                </div>
+            </div>
+
+            <div className="hidden sm:block ml-auto">
+                <BackButton url={`/dashboard/teams`} />
+            </div>
 
         </div>
 

@@ -1,50 +1,64 @@
 import React from 'react';
-import Link from '@mui/material/Link';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-
-export default function Orders({gameData}) {
-
-
+export default function GamesTable({ gameData }) {
     return (
-        <React.Fragment>
-
-        <Table size="small">
-            <TableHead>
-                <TableRow className='font-bold'>
-                    <TableCell><strong>Fecha</strong></TableCell>
-                    <TableCell><strong>Rival</strong></TableCell>
-                    <TableCell><strong>Puntos</strong></TableCell>
-                    <TableCell><strong>Rebotes</strong></TableCell>
-                    <TableCell><strong>Asitencias</strong></TableCell>
-                    <TableCell><strong>Robos</strong></TableCell>
-                    <TableCell><strong>Tapones</strong></TableCell>
-                </TableRow>
-            </TableHead>
-
-            <TableBody>
-            {gameData.map((game) => (
-                <TableRow
-                    key={game.id}
-                    className=' no-underline hover:no-underline'>
-                    <TableCell>{format(new Date(game.game.match_date), "EEE. dd/MM", { locale: es })}</TableCell>
-                    <TableCell>{game.rival_team}</TableCell>
-                    <TableCell className='text-center'>{game.points}</TableCell>
-                    <TableCell className='text-center'>{game.rebounds}</TableCell>
-                    <TableCell className='text-center'>{game.assists}</TableCell>
-                    <TableCell className='text-center'> {game.steals}</TableCell>
-                    <TableCell className='text-center'> {game.blocks}</TableCell>
-                </TableRow>
-
-            ))}
-            </TableBody>
-        </Table>
-        </React.Fragment>
+        <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                    <tr className='font-bold'>
+                        <th scope="col" className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Fecha
+                        </th>
+                        <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider col-span-2">
+                            Rival
+                        </th>
+                        <th scope="col" className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider col-span-2">
+                            Pts
+                        </th>
+                        <th scope="col" className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider col-span-2">
+                            Reb
+                        </th>
+                        <th scope="col" className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider col-span-2">
+                            Ast
+                        </th>
+                        <th scope="col" className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider col-span-2">
+                            Rob
+                        </th>
+                        <th scope="col" className="px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider col-span-2">
+                            Tap
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                    {gameData.map((game) => (
+                        <tr key={game.id} className='hover:bg-gray-100'>
+                            <td className="px-1 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                {format(new Date(game.game.match_date), "EEE. dd/MM", { locale: es })}
+                            </td>
+                            <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500 col-span-2">
+                                {game.rival_team}
+                            </td>
+                            <td className="py-4 whitespace-nowrap text-center text-sm text-gray-500 col-span-2">
+                                {game.points}
+                            </td>
+                            <td className=" py-4 whitespace-nowrap text-center text-sm text-gray-500 col-span-2">
+                                {game.rebounds}
+                            </td>
+                            <td className="py-4 whitespace-nowrap text-center text-sm text-gray-500 col-span-2">
+                                {game.assists}
+                            </td>
+                            <td className="py-4 whitespace-nowrap text-center text-sm text-gray-500 col-span-2">
+                                {game.steals}
+                            </td>
+                            <td className="py-4 whitespace-nowrap text-center text-sm text-gray-500 col-span-2">
+                                {game.blocks}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 }
