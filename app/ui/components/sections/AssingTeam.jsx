@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useAuth } from '@/hooks/auth';
 import { useRouter } from 'next/navigation';
 import axios from '@/lib/axios';
@@ -71,7 +72,7 @@ export default function AssingTeam() {
                         Selecciona tu equipo, <strong>{user.name}</strong>:
                     </span>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className='mb-4'>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                         {teams.map((team) => (
                             <div
@@ -101,6 +102,7 @@ export default function AssingTeam() {
                         {loading ? 'Cargando...' : 'Asignar Equipo'}
                     </button>
                 </form>
+                <Link className="mt-6 px-4 py-2 bg-menu-bg-500 rounded-lg disabled:opacity-50 hover:bg-menu-bg-700 text-white" href="/dashboard">Sin equipo</Link>
             </div>
         </div>
     );
