@@ -99,7 +99,7 @@ export default function CreateTeam() {
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-menu-bg-700 hover:text-primary-600 hover:bg-menu-bg-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         disabled={loading}
                     >
-                        {loading ? 'Creating...' : 'Crear Equipo'}
+                        {loading ? 'Creando...' : 'Crear Equipo'}
                     </button>
                 </div>
 

@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 export default function Page() {
     const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '' });
 
-    if (!user) return <div>Loading...</div>;
+    if (!user) return <div>Cargando...</div>;
 
     return (
         <>

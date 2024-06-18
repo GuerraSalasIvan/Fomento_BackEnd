@@ -51,7 +51,7 @@ export default function Page({ teamId }) {
     }, [teamId]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Cargando...</div>;
     }
 
     if (error) {

@@ -33,7 +33,7 @@ export default function Page({ params }) {
     }, [playerId]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Cargando...</div>;
     }
 
     if (!playerData || !playerData.player) {

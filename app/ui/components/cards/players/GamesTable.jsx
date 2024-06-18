@@ -5,6 +5,7 @@ import { es } from 'date-fns/locale';
 export default function GamesTable({ gameData }) {
     return (
         <div className="overflow-x-auto">
+            
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr className='font-bold'>

@@ -78,7 +78,7 @@ export default function GameCreate() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                     <label htmlFor="match_date" className="block text-sm font-medium text-gray-700">
-                        Match Date
+                        Fecha del partido
                     </label>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DateTimePicker
@@ -96,7 +96,7 @@ export default function GameCreate() {
 
                 <div>
                     <label htmlFor="league_id" className="block text-sm font-medium text-gray-700">
-                        League
+                        Liga
                     </label>
                     <select
                         id="league_id"
@@ -115,7 +115,7 @@ export default function GameCreate() {
 
                 <div>
                     <label htmlFor="local_team_id" className="block text-sm font-medium text-gray-700">
-                        Local Team
+                        Equipo Local
                     </label>
                     <select
                         id="local_team_id"
@@ -133,7 +133,7 @@ export default function GameCreate() {
 
                 <div>
                     <label htmlFor="visit_team_id" className="block text-sm font-medium text-gray-700">
-                        Visit Team
+                        Equipo Visitante
                     </label>
                     <select
                         id="visit_team_id"
@@ -151,7 +151,7 @@ export default function GameCreate() {
 
                 <div>
                     <label htmlFor="ubication_id" className="block text-sm font-medium text-gray-700">
-                        Location
+                        Ubicación
                     </label>
                     <select
                         id="ubication_id"
@@ -173,7 +173,7 @@ export default function GameCreate() {
                         className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-menu-bg-700 hover:text-primary-600 hover:bg-menu-bg-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         disabled={loading}
                     >
-                        {loading ? 'Creating...' : 'Create Game'}
+                        {loading ? 'Creando...' : 'Crear Partido'}
                     </button>
                 </div>
 
