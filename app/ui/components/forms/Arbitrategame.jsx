@@ -13,7 +13,7 @@ export default function GameDetailsForm({ localTeam, visitTeam, gameId }) {
     const initializePlayers = (team) => {
         return team.players.map(player => ({
             ...player,
-            dorsal: player.dorsal || '',
+            dorsal: player.dorsal || 0,
             points: 0,
             rebounds: 0,
             assists: 0,

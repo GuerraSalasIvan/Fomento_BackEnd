@@ -52,8 +52,8 @@ export default function GamesList() {
     return (
         <div className="container mx-auto p-4">
 
-            <div className="mb-6 flex">
-                <label htmlFor="league" className="block text-sm font-semibold text-menu-bg-700 w-2/12 p-2">
+            <div className="mb-6 flex flex-col lg:flex-row items-center">
+                <label htmlFor="league" className="block text-sm font-semibold text-menu-bg-700 lg:w-2/12 p-2">
                     Selector de ligas
                 </label>
                 <select
