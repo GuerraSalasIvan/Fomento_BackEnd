@@ -7,7 +7,7 @@ import IndexCard from '@/app/ui/components/cards/players/IndexCard';
 
 export default function Page() {
     return (
-        <Grid container spacing={1}>
+        <>
             <div>
                 <DarkTitle text = {'Jugadores'}/>
             </div>
@@ -15,6 +15,6 @@ export default function Page() {
             <div>
                 <IndexCard />
             </div>
-        </Grid>
+        </>
     );
 }
