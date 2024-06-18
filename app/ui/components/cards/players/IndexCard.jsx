@@ -21,11 +21,11 @@ export default function Page() {
         }
         fetchplayerData();
     }, []);
-    
+
 
     return (
         <div className="container mx-auto p-4">
-            
+
         {Object.entries(playerData).map(([teamName, players])  => (
             <div key={teamName} className="mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-title-dark-700">{teamName}</h2>
