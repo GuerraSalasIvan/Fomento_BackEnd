@@ -64,7 +64,7 @@ export default function ScoreBoard({ local, localscore, visit, visitscore, gameI
             mvp: 0,
         };
 
-        axios.post('/api/gameDetail', data)
+        axios.post('/gameDetail', data)
             .then(response => {
                 // console.log('Data saved successfully:', response.data);
             })
