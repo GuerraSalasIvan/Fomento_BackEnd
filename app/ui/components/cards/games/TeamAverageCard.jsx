@@ -1,4 +1,4 @@
-// AverageCard Component
+
 import React from 'react';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 

@@ -16,8 +16,8 @@ export default function MediumCard({eventData}) {
                     <Image
                         src={MockImage.src}
                         alt="Event Image"
-                        width={500} // Establece el ancho deseado de la imagen
-                        height={300} // Establece la altura deseada de la imagen
+                        width={500}
+                        height={300}
                     />
                 </div>
                 <div className="w-2/3 p-4">

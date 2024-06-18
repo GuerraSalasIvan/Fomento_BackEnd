@@ -23,12 +23,12 @@ export default function DashBoardEvent(){
 
     return(
         <>
-            {isLoading ? ( // Si isLoading es true, muestra el mensaje de "Cargando..."
+            {isLoading ? (
                 <div className="m-2 bg-secondary-400 bg-opacity-10 border border-secondary-400 rounded-md px-5 py-2">
                     <p className="text-subtitle-event-800">Cargando...</p>
                 </div>
             ) : (
-                // Si isLoading es false, renderiza la lista de juegos
+                
                 <>
                     {eventData.map((game, index) => (
                         <div key={index} className="m-2 bg-secondary-400 bg-opacity-10 border border-secondary-400 rounded-md px-5 py-2">

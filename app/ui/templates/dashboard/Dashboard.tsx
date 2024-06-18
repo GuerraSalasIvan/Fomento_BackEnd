@@ -100,7 +100,7 @@ export default function Dashboard() {
         <AppBar position="absolute" open={open} className='bg-menu-bg-950'>
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: '24px',
             }}
           >
             <IconButton edge="start" color="inherit" aria-label="open drawer" onClick={toggleDrawer}

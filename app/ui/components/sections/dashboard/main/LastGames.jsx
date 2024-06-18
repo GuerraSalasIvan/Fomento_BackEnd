@@ -1,4 +1,4 @@
-// LastGames Component
+
 import React from 'react';
 import DarkTitle from '@/app/ui/components/titles/DarkTitle';
 import HomeCard from '@/app/ui/components/cards/games/HomeCard';

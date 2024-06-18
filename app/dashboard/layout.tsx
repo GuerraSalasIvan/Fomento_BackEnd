@@ -122,17 +122,17 @@ export default function Dashboard({ children }) {
                             <Image src={logo} alt="alt" width={156} height={50} className="py-1.5" />
                         </Typography>
                         <div className="mr-4 flex items-center">
-    {user && user.player && user.player.id ? (
-        <p>
-            Hola,
-            <Link href={`/dashboard/players/${user.player.id}`} className='focus:outline-none hover:no-underline text-white hover:text-menu-bg-200 text-base'>
-                <strong> {user.name}</strong>
-            </Link>
-        </p>
-    ) : (
-        <p>Cargando...</p>
-    )}
-</div>
+                            {user && user.player && user.player.id ? (
+                                <p>
+                                    Hola,
+                                    <Link href={`/dashboard/players/${user.player.id}`} className='focus:outline-none hover:no-underline text-white hover:text-menu-bg-200 text-base'>
+                                        <strong> {user.name}</strong>
+                                    </Link>
+                                </p>
+                            ) : (
+                                <p>Cargando...</p>
+                            )}
+                        </div>
                         <button
                             onClick={logout}
                             className="ml-4 text-sm text-gray-700 underline"

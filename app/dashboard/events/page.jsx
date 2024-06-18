@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation'
 export default function Page() {
     const { user } = useAuth({ middleware: 'guest', redirectIfAuthenticated: '' });
 
-    // Si el usuario no está cargado aún, puedes devolver un loading o un fragmento vacío
     if (!user) return <div>Loading...</div>;
 
     return (

@@ -54,7 +54,7 @@ export default function AssingTeam() {
     }
 
     if (user.player.teams && user.player.teams.length > 0) {
-        return null; // Return null to render nothing while redirecting
+        return null;
     }
 
     return (

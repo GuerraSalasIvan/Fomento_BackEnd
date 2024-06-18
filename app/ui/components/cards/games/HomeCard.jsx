@@ -1,10 +1,10 @@
-// HomeCard Component
+
 import React, { useState, useEffect } from 'react';
 import axios from '@/lib/axios';
 
 export default function HomeCard({ gameData }) {
     const [mvpName, setMvpName] = useState('Cargando...');
-    
+
     useEffect(() => {
         const fetchMvpName = async (mvpId) => {
             if (mvpId === 0) {
@@ -25,7 +25,6 @@ export default function HomeCard({ gameData }) {
         fetchMvpName(gameData.game_details.mvp);
     }, [gameData.game_details.mvp]);
 
-    // Calcular el resultado sumando los puntajes de los cuartos
     const localTeamScore = gameData.game_details.local_first_cuarter +
                            gameData.game_details.local_second_cuarter +
                            gameData.game_details.local_third_cuarter +

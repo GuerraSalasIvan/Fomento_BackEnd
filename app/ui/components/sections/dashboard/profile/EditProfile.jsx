@@ -54,7 +54,7 @@ const UpdateProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setMessage(''); // Clear any previous messages
+        setMessage('');
 
         try {
             await updateProfile({
@@ -78,7 +78,7 @@ const UpdateProfile = () => {
                                 src={imagePreview || unknown}
                                 alt="Profile Preview"
                                 className="h-64 w-64 object-cover rounded-full"
-                                width={256} // Actualizamos el width y height para que coincidan con la clase de tailwind aplicada
+                                width={256}
                                 height={256}
                             />
                         </div>
